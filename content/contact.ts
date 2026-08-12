@@ -41,7 +41,7 @@ export const CONTACT_CTA = {
 
 export const RATING_BANNER = {
   rating: `${SITE_CONFIG.googleRating} ${SITE_CONFIG.googleRatingStars}`,
-  headline: "Rated 5 Stars on Google",
+  headline: "Rated 5.0 on Google",
   description:
-    "Our customers love the quality and service. Come see why Ceylon 3D is Makandura\u2019s top-rated printing service.",
+    "Our customers value the quality, communication and service behind every project.",
 };
