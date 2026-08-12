@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { SITE_METADATA } from "@/content";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -7,11 +7,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ceylon 3D | Professional 3D Printing Service in Makandura",
-  description:
-    "Ceylon 3D delivers high-quality 3D printing services in Makandura, Sri Lanka. Prototypes, custom models, architectural prints, and more.",
-};
+export const metadata = SITE_METADATA;
 
 export default function RootLayout({
   children,
