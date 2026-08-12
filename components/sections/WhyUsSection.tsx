@@ -6,29 +6,6 @@ import { MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 
-/* ─────────────────── proof / principles data ─────────────────── */
-
-const PRINCIPLES = [
-  {
-    number: "01",
-    title: "Engineering-focused",
-    description:
-      "From early prototypes to replacement components, we approach every project with attention to fit, function and manufacturability.",
-  },
-  {
-    number: "02",
-    title: "Made locally",
-    description:
-      "Based in Makandura, we provide accessible local 3D printing and project support without unnecessary complexity.",
-  },
-  {
-    number: "03",
-    title: "From file to finished part",
-    description:
-      "We help customers move from an idea, scan or CAD model through preparation, printing and the finished physical component.",
-  },
-] as const;
-
 /* ─────────────────── small helpers ─────────────────── */
 
 function ArrowIcon({ className = "" }: { className?: string }) {
@@ -195,41 +172,6 @@ export function WhyUsSection() {
           </motion.div>
         </div>
 
-        {/* ─── divider ─── */}
-        <div className="my-16 h-px bg-white/[0.06] sm:my-20 lg:my-24" />
-
-        {/* ─── proof / principles row ─── */}
-        <div className="grid gap-10 sm:grid-cols-3 sm:gap-0">
-          {PRINCIPLES.map((p, i) => (
-            <motion.div
-              key={p.number}
-              className={`relative ${
-                i > 0
-                  ? "sm:border-l sm:border-white/[0.06] sm:pl-8 lg:pl-10"
-                  : ""
-              } ${i < PRINCIPLES.length - 1 ? "sm:pr-8 lg:pr-10" : ""}`}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
-            >
-              {/* number */}
-              <span className="text-xs font-mono font-semibold tracking-wider text-white/15">
-                {p.number}
-              </span>
-
-              {/* title */}
-              <h3 className="mt-2 text-base font-semibold text-white sm:text-lg">
-                {p.title}
-              </h3>
-
-              {/* description */}
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">
-                {p.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
       </div>
 
       {/* bottom separator */}
