@@ -258,7 +258,7 @@ function AnimatedCard({
 
 function ReducedMotionFallback() {
   return (
-    <section id="services" className="bg-gray-950 py-20 sm:py-28">
+    <section id="services" className="scroll-mt-24 bg-gray-950 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* heading */}
         <div className="mb-14 text-center">

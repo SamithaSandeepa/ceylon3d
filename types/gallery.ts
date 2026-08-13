@@ -1,10 +1,16 @@
-export interface GalleryItem {
-  /** Display label */
-  label: string;
-  /** Tailwind gradient classes (e.g., "from-orange-900 to-gray-900") */
-  color: string;
-  /** Category tag */
-  tag: string;
-  /** Optional image path (relative to /public) */
-  image?: string;
-}
+export type GalleryImage = {
+  id: string;
+  src: string;
+  alt: string;
+  title?: string;
+  description?: string;
+  caption?: string; // Keep existing caption support for backward compatibility if any
+};
+
+export type GalleryCategory = {
+  id: string;
+  name: string;
+  slug: string;
+  coverImage: string;
+  images: GalleryImage[];
+};

@@ -1,5 +1,6 @@
 import { NAV_LINKS, FOOTER_CONTENT } from "@/content";
 import { SITE_CONFIG } from "@/config/site";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -8,7 +9,7 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white">
                 {SITE_CONFIG.companyNameHighlight}
               </div>
@@ -16,7 +17,7 @@ export function Footer() {
                 {SITE_CONFIG.companyNameShort}
                 <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
               </span>
-            </div>
+            </Link>
             <p className="text-gray-500 text-sm leading-relaxed">
               {FOOTER_CONTENT.description}
             </p>
@@ -27,13 +28,13 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">{FOOTER_CONTENT.quickLinksTitle}</h4>
             <div className="space-y-2">
               {NAV_LINKS.map((l) => (
-                <a
+                <Link
                   key={l.href}
                   href={l.href}
                   className="block text-gray-500 hover:text-orange-400 text-sm transition-colors"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

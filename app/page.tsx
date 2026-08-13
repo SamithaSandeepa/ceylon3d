@@ -4,10 +4,10 @@ import {
   ServicesSection,
   WhyUsSection,
   ProcessSection,
-  GallerySection,
   RatingBanner,
   ContactSection,
 } from "@/components/sections";
+import { GalleryPreview } from "@/components/gallery/GalleryPreview";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <ServicesSection />
         <WhyUsSection />
         <ProcessSection />
-        <GallerySection />
+        <GalleryPreview />
         <RatingBanner />
         <ContactSection />
       </main>

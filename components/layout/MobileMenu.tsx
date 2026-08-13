@@ -1,6 +1,7 @@
 "use client";
 
 import type { NavLink } from "@/types";
+import Link from "next/link";
 
 interface MobileMenuProps {
   links: NavLink[];
@@ -13,14 +14,14 @@ export function MobileMenu({ links, phoneLabel, phoneHref, onClose }: MobileMenu
   return (
     <div className="md:hidden bg-gray-950/98 border-t border-orange-500/20 px-4 pb-4">
       {links.map((l) => (
-        <a
+        <Link
           key={l.href}
           href={l.href}
           onClick={onClose}
           className="block py-3 text-gray-300 hover:text-orange-400 border-b border-gray-800 text-sm"
         >
           {l.label}
-        </a>
+        </Link>
       ))}
       <a
         href={phoneHref}
