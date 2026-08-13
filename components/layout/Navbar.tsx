@@ -5,6 +5,7 @@ import { useScrolled } from "@/hooks/useScrolled";
 import { NAV_LINKS } from "@/content";
 import { SITE_CONFIG } from "@/config/site";
 import { MobileMenu } from "./MobileMenu";
+import Link from "next/link";
 
 export function Navbar() {
   const scrolled = useScrolled();
@@ -19,7 +20,7 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2 group">
           <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white group-hover:scale-110 transition-transform">
             {SITE_CONFIG.companyNameHighlight}
           </div>
@@ -27,18 +28,18 @@ export function Navbar() {
             {SITE_CONFIG.companyNameShort}
             <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.href}
               href={l.href}
               className="text-gray-300 hover:text-orange-400 text-sm font-medium transition-colors"
             >
               {l.label}
-            </a>
+            </Link>
           ))}
         </div>
 

@@ -1,25 +1,20 @@
 import type { HeroContent } from "@/types";
 
 export const HERO_CONTENT: HeroContent = {
-  badgeText: "Now Open in Makandura",
+  eyebrow: "ADDITIVE MANUFACTURING · MAKANDURA",
   headline: {
-    line1: "Print Your",
-    highlight: "Ideas",
-    line3: "Into Reality",
+    prefix: "From idea to\n",
+    highlight: "physical part.",
   },
   subtext:
-    "Ceylon 3D is Sri Lanka\u2019s trusted 3D printing studio in Makandura. From prototypes to custom models \u2014 we bring your digital designs to life with precision and speed.",
+    "Professional prototyping, 3D scanning and 3D printing for replacement parts, custom components and product development.",
   primaryCTA: {
-    label: "Explore Services",
-    href: "#services",
-  },
-  secondaryCTA: {
-    label: "Get a Quote",
+    label: "Start a Project \u2192",
     href: "#contact",
   },
-  stats: [
-    { value: "5.0⭐", label: "Google Rating" },
-    { value: "Fast", label: "24\u201372 hr delivery" },
-    { value: "LKR", label: "Affordable pricing" },
-  ],
+  secondaryCTA: {
+    label: "Explore Services \u2197",
+    href: "#services",
+  },
+  capabilities: ["PROTOTYPING", "3D SCANNING", "3D PRINTING"],
 };

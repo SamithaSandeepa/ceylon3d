@@ -266,7 +266,7 @@ export function ProcessSection() {
     <section
       ref={sectionRef}
       id="process"
-      className="relative bg-gray-950 py-24 sm:py-32 lg:py-36"
+      className="scroll-mt-24 relative bg-gray-950 py-24 sm:py-32 lg:py-36"
     >
       {/* top separator */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />

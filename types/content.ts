@@ -19,13 +19,12 @@ export interface SectionHeaderData {
 }
 
 export interface HeroContent {
-  /** Badge text (e.g., "Now Open in Makandura") */
-  badgeText: string;
+  /** Eyebrow text (e.g., "ADDITIVE MANUFACTURING · MAKANDURA") */
+  eyebrow: string;
   /** Headline parts for multi-line rendering */
   headline: {
-    line1: string;
+    prefix: string;
     highlight: string;
-    line3: string;
   };
   /** Subtext paragraph */
   subtext: string;
@@ -39,8 +38,8 @@ export interface HeroContent {
     label: string;
     href: string;
   };
-  /** Stats displayed below the CTAs */
-  stats: StatItem[];
+  /** Capabilities displayed at the bottom */
+  capabilities: string[];
 }
 
 export interface CTAButton {

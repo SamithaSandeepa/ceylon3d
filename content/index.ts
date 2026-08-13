@@ -8,7 +8,7 @@ export {
   WHY_US,
 } from "./why-us";
 export { PROCESS_HEADER, PROCESS } from "./process";
-export { GALLERY_HEADER, GALLERY_ITEMS } from "./gallery";
+
 export {
   CONTACT_HEADER,
   CONTACT_CARDS,
