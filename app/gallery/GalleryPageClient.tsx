@@ -49,26 +49,34 @@ function GalleryPageInner({ initialCategory, categories }: GalleryPageClientProp
 
   return (
     <>
-      <GalleryCategoryTabs 
-        categories={categories}
-        activeCategory={activeCategoryFilter}
-        onSelect={handleCategorySelect}
-      />
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeCategoryFilter}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <GalleryGrid 
-            categories={activeCategoryFilter === "all" ? categories : categories.filter((c) => c.slug === activeCategoryFilter)}
+      {categories.length === 0 ? (
+        <div className="flex items-center justify-center py-32 px-4 border border-white/[0.04] rounded-2xl bg-white/[0.01]">
+          <p className="text-gray-400 text-sm">No gallery items available. Please check back later.</p>
+        </div>
+      ) : (
+        <>
+          <GalleryCategoryTabs 
+            categories={categories}
             activeCategory={activeCategoryFilter}
-            onImageClick={handleImageClick}
+            onSelect={handleCategorySelect}
           />
-        </motion.div>
-      </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategoryFilter}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <GalleryGrid 
+                categories={activeCategoryFilter === "all" ? categories : categories.filter((c) => c.slug === activeCategoryFilter)}
+                activeCategory={activeCategoryFilter}
+                onImageClick={handleImageClick}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </>
+      )}
 
       <GalleryLightbox 
         isOpen={lightboxOpen}

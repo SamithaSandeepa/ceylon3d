@@ -1,6 +1,7 @@
 import { Navbar, Footer } from "@/components/layout";
 import { GalleryPageClient } from "./GalleryPageClient";
-import { galleryCategories } from "@/data/gallery";
+import { fetchCategories } from "@/lib/gallery-api";
+import type { GalleryCategory } from "@/types/gallery";
 
 export default async function GalleryPage({
   searchParams,
@@ -9,6 +10,14 @@ export default async function GalleryPage({
 }) {
   const params = await searchParams;
   const initialCategory = typeof params.category === "string" ? params.category : "all";
+
+  let categories: GalleryCategory[];
+  try {
+    categories = await fetchCategories();
+  } catch (error) {
+    console.error("Failed to fetch gallery categories:", error);
+    categories = [];
+  }
 
   return (
     <div className="min-h-screen font-[var(--font-sans)] bg-gray-950">
@@ -32,7 +41,7 @@ export default async function GalleryPage({
           
           <GalleryPageClient 
             initialCategory={initialCategory} 
-            categories={galleryCategories}
+            categories={categories}
           />
         </div>
       </main>
