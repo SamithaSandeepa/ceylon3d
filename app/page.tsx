@@ -8,8 +8,17 @@ import {
   ContactSection,
 } from "@/components/sections";
 import { GalleryPreview } from "@/components/gallery/GalleryPreview";
+import { fetchCategories } from "@/lib/gallery-api";
+import type { GalleryCategory } from "@/types/gallery";
 
-export default function Home() {
+export default async function Home() {
+  let categories: GalleryCategory[] = [];
+  try {
+    categories = await fetchCategories();
+  } catch (error) {
+    console.error("Failed to fetch gallery categories for homepage:", error);
+  }
+
   return (
     <div className="min-h-screen font-[var(--font-sans)]">
       <Navbar />
@@ -18,7 +27,7 @@ export default function Home() {
         <ServicesSection />
         <WhyUsSection />
         <ProcessSection />
-        <GalleryPreview />
+        <GalleryPreview categories={categories} />
         <RatingBanner />
         <ContactSection />
       </main>

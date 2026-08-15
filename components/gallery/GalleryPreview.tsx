@@ -4,12 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { galleryCategories } from "@/data/gallery";
 import { CategoryCard } from "./CategoryCard";
 import { GalleryLightbox } from "./GalleryLightbox";
 import { GalleryCategory } from "@/types/gallery";
 
-export function GalleryPreview() {
+interface GalleryPreviewProps {
+  categories: GalleryCategory[];
+}
+
+export function GalleryPreview({ categories }: GalleryPreviewProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<GalleryCategory | null>(null);
 
@@ -49,24 +52,33 @@ export function GalleryPreview() {
           </p>
         </motion.div>
 
+        {/* Empty State */}
+        {categories.length === 0 && (
+          <div className="flex items-center justify-center py-20 px-4 border border-white/[0.04] rounded-2xl bg-white/[0.01] mb-16">
+            <p className="text-gray-400 text-sm">No gallery items available yet.</p>
+          </div>
+        )}
+
         {/* Category Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
-          {galleryCategories.slice(0, 3).map((category, index) => (
-            <motion.div
-              key={category.id}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <CategoryCard 
-                category={category} 
-                onClick={() => handleCategoryClick(category)} 
-                priority={index < 2}
-              />
-            </motion.div>
-          ))}
-        </div>
+        {categories.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
+            {categories.slice(0, 3).map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <CategoryCard 
+                  category={category} 
+                  onClick={() => handleCategoryClick(category)} 
+                  priority={index < 2}
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Footer CTA */}
         <div className="mt-8 flex justify-center sm:justify-end">
