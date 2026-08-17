@@ -1,6 +1,6 @@
 import { Geist } from "next/font/google";
 import { SITE_METADATA } from "@/content";
-import { JsonLd } from "@/components/layout";
+import { JsonLd, FloatingWhatsApp } from "@/components/layout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,6 +20,7 @@ export default function RootLayout({
       <body className="bg-gray-950 text-gray-100 antialiased">
         <JsonLd />
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );
