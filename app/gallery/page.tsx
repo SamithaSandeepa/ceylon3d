@@ -2,6 +2,29 @@ import { Navbar, Footer } from "@/components/layout";
 import { GalleryPageClient } from "./GalleryPageClient";
 import { fetchCategories } from "@/lib/gallery-api";
 import type { GalleryCategory } from "@/types/gallery";
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/config/site";
+
+export const metadata: Metadata = {
+  title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
+  description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
+  alternates: {
+    canonical: "/gallery",
+  },
+  openGraph: {
+    title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
+    description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
+    url: `${SITE_CONFIG.url}/gallery`,
+    siteName: SITE_CONFIG.companyName,
+    locale: "en_LK",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
+    description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
+  },
+};
 
 export default async function GalleryPage({
   searchParams,

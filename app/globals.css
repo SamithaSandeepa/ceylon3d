@@ -54,3 +54,12 @@ html {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #030712; }
 ::-webkit-scrollbar-thumb { background: #f97316; border-radius: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-anim,
+  .glow-btn,
+  .section-fade {
+    animation: none !important;
+    transition: none !important;
+  }
+}

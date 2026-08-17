@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Clock3, ArrowUpRight, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock3, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { BUSINESS_HOURS } from "@/content";
@@ -32,10 +32,7 @@ export function ContactSection() {
     e.preventDefault();
     if (!validate()) return;
 
-    // Convert local number format (e.g. tel:0743117565) to international (94743117565)
-    // Assumes Sri Lanka (+94) based on existing location.
-    const rawNumber = SITE_CONFIG.phoneHref.replace("tel:", "").replace(/\s/g, "");
-    const waNumber = rawNumber.startsWith("0") ? `94${rawNumber.substring(1)}` : rawNumber;
+    const waNumber = SITE_CONFIG.whatsappNumber;
 
     const message = `Hello Ceylon 3D,
 
@@ -168,7 +165,7 @@ I can send my CAD file/reference images here.`;
                 Have a design, part or idea?
               </h3>
               <p className="mb-8 text-sm leading-relaxed text-gray-400">
-                Share the basic details and we'll help determine the best next step.
+                Share the basic details and we&apos;ll help determine the best next step.
               </p>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1">

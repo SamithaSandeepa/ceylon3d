@@ -118,7 +118,7 @@ export function WhyUsSection() {
 
               {/* CTA */}
               <Link
-                href="#contact"
+                href="/#contact"
                 className="group inline-flex items-center gap-2 text-sm font-medium text-white/80 transition-colors duration-300 hover:text-orange-400"
               >
                 Visit our workshop
