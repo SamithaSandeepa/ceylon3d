@@ -16,6 +16,7 @@ export const SITE_CONFIG = {
   location: "Makandura",
   googleRating: "5.0",
   googleRatingStars: "★★★★★",
+  googleReviewsUrl: "https://www.google.com/search?q=Ceylon+3D+Makandura",
   copyrightYear: new Date().getFullYear().toString(),
   url: "https://www.ceylon3d.com",
 } as const;
