@@ -7,7 +7,7 @@ export {
   WHY_US_LOCATION,
   WHY_US,
 } from "./why-us";
-export { PROCESS_HEADER, PROCESS } from "./process";
+export { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA } from "./impact";
 
 export {
   CONTACT_HEADER,
