@@ -73,7 +73,6 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
                 <CategoryCard 
                   category={category} 
                   onClick={() => handleCategoryClick(category)} 
-                  priority={index < 2}
                 />
               </motion.div>
             ))}
