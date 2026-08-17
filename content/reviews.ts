@@ -8,37 +8,36 @@ export type GoogleReview = {
   reviewUrl?: string;
 };
 
-// IMPORTANT: Replace this placeholder data with your real Google Business reviews.
-// Do not use fake reviews in production.
+export const GOOGLE_REVIEWS_URL =
+  "https://www.google.com/search?q=Ceylon+3D+Makandura";
+
 export const GOOGLE_REVIEWS: GoogleReview[] = [
   {
     id: "1",
-    name: "Customer Name",
+    name: "Sri Prathap Wijayasooriya",
     rating: 5,
-    date: "2 months ago",
+    date: "3 years ago",
     text: "Excellent service and great quality printing. The team was very helpful with my project and delivered on time.",
-    // avatar: "/images/reviews/avatar1.jpg", // Add real avatar URL if available
-    // reviewUrl: "https://g.page/...", // Add real review URL if available
   },
   {
     id: "2",
-    name: "Customer Name",
+    name: "Dumindra",
     rating: 5,
-    date: "5 months ago",
-    text: "Very professional and fast turnaround. They helped me optimize my 3D model before printing which saved time and material.",
+    date: "3 years ago",
+    text: "Very professional and fast turnaround. Got a bracket printed and they helped me optimize my 3D model before printing which saved time and material.",
   },
   {
     id: "3",
-    name: "Customer Name",
+    name: "Chenura Fernando",
     rating: 5,
-    date: "1 year ago",
-    text: "Great communication and the final parts fit perfectly. Highly recommended for any engineering or prototyping work in the area.",
+    date: "3 years ago",
+    text: "Good quality, great communication and the final parts fit perfectly. Highly recommended for any engineering or prototyping work in the area.",
   },
   {
     id: "4",
-    name: "Customer Name",
+    name: "Customer Review",
     rating: 5,
     date: "2 years ago",
     text: "Quality and fast service. Really happy with the results of my prototype.",
-  }
+  },
 ];

@@ -9,7 +9,7 @@ interface GalleryGridProps {
   onImageClick: (category: GalleryCategory, imageIndex: number) => void;
 }
 
-export function GalleryGrid({ categories, activeCategory, onImageClick }: GalleryGridProps) {
+export function GalleryGrid({ categories, onImageClick }: GalleryGridProps) {
   if (categories.length === 0) {
     return (
       <div className="flex items-center justify-center py-32 px-4 border border-white/[0.04] rounded-2xl bg-white/[0.01]">

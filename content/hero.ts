@@ -10,11 +10,11 @@ export const HERO_CONTENT: HeroContent = {
     "Professional prototyping, 3D scanning and 3D printing for replacement parts, custom components and product development.",
   primaryCTA: {
     label: "Start a Project \u2192",
-    href: "#contact",
+    href: "/#contact",
   },
   secondaryCTA: {
     label: "Explore Services \u2197",
-    href: "#services",
+    href: "/#services",
   },
   capabilities: ["PROTOTYPING", "3D SCANNING", "3D PRINTING"],
 };

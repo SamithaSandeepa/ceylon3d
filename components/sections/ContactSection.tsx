@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Clock3, ArrowUpRight, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { MapPin, Phone, Clock3, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { BUSINESS_HOURS } from "@/content";
@@ -32,10 +33,7 @@ export function ContactSection() {
     e.preventDefault();
     if (!validate()) return;
 
-    // Convert local number format (e.g. tel:0743117565) to international (94743117565)
-    // Assumes Sri Lanka (+94) based on existing location.
-    const rawNumber = SITE_CONFIG.phoneHref.replace("tel:", "").replace(/\s/g, "");
-    const waNumber = rawNumber.startsWith("0") ? `94${rawNumber.substring(1)}` : rawNumber;
+    const waNumber = SITE_CONFIG.whatsappNumber;
 
     const message = `Hello Ceylon 3D,
 
@@ -56,14 +54,14 @@ I can send my CAD file/reference images here.`;
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 relative bg-gray-950 py-24 sm:py-32 lg:py-36">
+    <section id="contact" className="scroll-mt-24 relative bg-gray-950 py-24 sm:py-32 lg:py-36 overflow-hidden">
       {/* top separator */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-12 lg:gap-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
           
-          {/* ─── LEFT COLUMN: Info ─── */}
+          {/* ─── LEFT COLUMN: Editorial Intro, Visual & Direct Channels ─── */}
           <motion.div 
             className="lg:col-span-5"
             initial={{ opacity: 0, x: -20 }}
@@ -72,77 +70,99 @@ I can send my CAD file/reference images here.`;
             transition={{ duration: 0.5 }}
           >
             {/* Header */}
-            <div className="mb-12">
+            <div className="mb-8">
               <div className="mb-6 flex items-center gap-3">
                 <div className="h-px w-8 bg-orange-500/50" />
                 <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
                   Get In Touch
                 </span>
               </div>
-              <h2 className="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
-                Let’s build your <br className="hidden sm:block" />
-                <span className="text-orange-500">next part.</span>
+              <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
+                Let&apos;s build your <br className="hidden sm:block" />
+                <span className="text-orange-500">next part</span>.
               </h2>
               <p className="text-base leading-7 text-gray-400">
-                Tell us what you need, share your design or reference part, and we’ll help you determine the next step.
+                Tell us what you need, share your CAD model or reference component, and we&apos;ll help you determine the optimal manufacturing method.
               </p>
             </div>
 
-            <div className="space-y-10">
+            {/* Integrated Precision Imagery Break */}
+            <div className="group relative mb-10 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0f] shadow-xl">
+              <div className="relative h-[180px] sm:h-[220px] w-full">
+                <Image
+                  src="/images/about/detail.jpg"
+                  alt="Precision 3D printed mechanical component measured with calipers"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="object-cover object-[center_35%] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent" />
+                
+                <div className="absolute bottom-3.5 left-4 right-4 flex items-center justify-between text-xs text-white/90">
+                  <span className="inline-flex items-center gap-1.5 font-semibold text-[11px] uppercase tracking-wider text-orange-400">
+                    <ShieldCheck size={14} />
+                    Direct Engineering Support
+                  </span>
+                  <span className="font-mono text-[10px] text-white/60">Makandura, LK</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Direct Contact Cards */}
+            <div className="space-y-8">
               {/* Phone */}
               <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <Phone size={14} className="text-orange-400/70" />
+                <div className="mb-2 flex items-center gap-2">
+                  <Phone size={14} className="text-orange-400/80" />
                   <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                    Direct Contact
+                    Direct Phone / WhatsApp
                   </span>
                 </div>
                 <Link 
                   href={SITE_CONFIG.phoneHref}
-                  className="group inline-block transition-opacity hover:opacity-80"
+                  className="group inline-block transition-opacity hover:opacity-90"
                 >
-                  <div className="text-2xl font-semibold text-white tracking-wide">
+                  <div className="text-2xl font-bold text-white tracking-wide">
                     {SITE_CONFIG.phone}
                   </div>
                   <div className="mt-1 flex items-center gap-1.5 text-sm font-medium text-orange-400">
-                    Call or WhatsApp
+                    <span>Call or WhatsApp</span>
                     <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </div>
                 </Link>
               </div>
 
-              <div className="h-px w-full bg-white/[0.04]" />
+              <div className="h-px w-full bg-white/[0.06]" />
 
               {/* Location */}
               <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <MapPin size={14} className="text-orange-400/70" />
+                <div className="mb-2 flex items-center gap-2">
+                  <MapPin size={14} className="text-orange-400/80" />
                   <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                    Workshop
+                    Workshop Location
                   </span>
                 </div>
-                <div className="text-base text-gray-300">
-                  {SITE_CONFIG.address.line1}
-                  <br />
-                  {SITE_CONFIG.address.line2}
+                <div className="text-sm text-gray-300">
+                  <p className="font-medium text-white">{SITE_CONFIG.address.line1}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{SITE_CONFIG.address.line2}</p>
                 </div>
               </div>
 
-              <div className="h-px w-full bg-white/[0.04]" />
+              <div className="h-px w-full bg-white/[0.06]" />
 
               {/* Hours */}
               <div>
-                <div className="mb-4 flex items-center gap-2">
-                  <Clock3 size={14} className="text-orange-400/70" />
+                <div className="mb-3 flex items-center gap-2">
+                  <Clock3 size={14} className="text-orange-400/80" />
                   <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
                     Opening Hours
                   </span>
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2.5">
                   {BUSINESS_HOURS.map((h) => (
-                    <div key={h.day} className="flex justify-between text-sm">
+                    <div key={h.day} className="flex justify-between text-xs">
                       <span className="text-gray-400">{h.day}</span>
-                      <span className={h.isClosed ? "text-gray-600" : "font-medium text-orange-400"}>
+                      <span className={h.isClosed ? "text-gray-600" : "font-semibold text-orange-400"}>
                         {h.hours}
                       </span>
                     </div>
@@ -160,18 +180,18 @@ I can send my CAD file/reference images here.`;
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="rounded-3xl border border-white/[0.06] bg-white/[0.02] p-6 sm:p-10 lg:p-12 h-full flex flex-col">
-              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400/80">
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-10 lg:p-12 backdrop-blur-sm shadow-2xl shadow-black/40">
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400/90">
                 Start a Project
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
-                Have a design, part or idea?
+              <h3 className="mb-3 text-2xl font-bold text-white sm:text-3xl tracking-tight">
+                Have a design, part or requirement?
               </h3>
               <p className="mb-8 text-sm leading-relaxed text-gray-400">
-                Share the basic details and we'll help determine the best next step.
+                Share the basic details and we&apos;ll review geometry, material requirements, and turnaround options.
               </p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="grid gap-6 sm:grid-cols-2">
                   {/* Name */}
                   <div className="flex flex-col gap-2">
@@ -182,7 +202,7 @@ I can send my CAD file/reference images here.`;
                       id="inquiry-name"
                       type="text"
                       autoComplete="name"
-                      placeholder="John Silva"
+                      placeholder="e.g. Ruwan Perera"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
@@ -212,7 +232,7 @@ I can send my CAD file/reference images here.`;
                   {/* Service */}
                   <div className="flex flex-col gap-2">
                     <label htmlFor="inquiry-service" className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
-                      What do you need?
+                      Primary Service Needed
                     </label>
                     <select
                       id="inquiry-service"
@@ -239,7 +259,7 @@ I can send my CAD file/reference images here.`;
                     <input
                       id="inquiry-qty"
                       type="text"
-                      placeholder="e.g. 1, 5, 20"
+                      placeholder="e.g. 1, 5, 20 units"
                       value={formData.quantity}
                       onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
                       className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
@@ -248,47 +268,43 @@ I can send my CAD file/reference images here.`;
                 </div>
 
                 {/* Details */}
-                <div className="flex flex-col gap-2 flex-1">
+                <div className="flex flex-col gap-2">
                   <label htmlFor="inquiry-details" className="text-[11px] font-semibold uppercase tracking-widest text-white/60">
-                    Tell us about your project
+                    Project Requirements / Part Details
                   </label>
                   <textarea
                     id="inquiry-details"
-                    placeholder="Describe the part, intended use, approximate dimensions or what you need help with..."
+                    placeholder="Describe the part, dimensions, intended use, or share your material preference..."
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="min-h-[140px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                    className="min-h-[130px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                   />
                   {errors.details && <span className="text-xs text-red-400">{errors.details}</span>}
                 </div>
 
                 {/* Helper / Hints Row */}
-                <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-4">
-                  <div className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-white/40">
-                    Helpful to include:
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-mono tracking-wider text-orange-400/80">
-                    <span>CAD FILE</span>
+                <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-3.5">
+                  <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-mono tracking-wider text-orange-400/90">
+                    <span className="text-white/40 uppercase">Helpful:</span>
+                    <span>CAD FILES</span>
                     <span className="text-white/20">·</span>
                     <span>DIMENSIONS</span>
-                    <span className="text-white/20">·</span>
-                    <span>QUANTITY</span>
                     <span className="text-white/20">·</span>
                     <span>INTENDED USE</span>
                   </div>
                 </div>
 
                 {/* Submit Action */}
-                <div className="mt-2 flex flex-col gap-4">
+                <div className="flex flex-col gap-3">
                   <button
                     type="submit"
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-4 text-[15px] font-bold text-white transition-all hover:bg-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] active:scale-[0.98]"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-4 text-[15px] font-bold text-white transition-all hover:bg-orange-400 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)] active:scale-[0.98]"
                   >
-                    Send via WhatsApp
+                    <span>Send Inquiry via WhatsApp</span>
                     <ArrowUpRight size={18} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </button>
                   <p className="text-center text-xs text-gray-500">
-                    Have a CAD file or reference photo? You can send it to us in WhatsApp after submitting your request.
+                    You can directly attach your .STL / .STEP / .CAD files or reference photos in WhatsApp after initiating.
                   </p>
                 </div>
               </form>

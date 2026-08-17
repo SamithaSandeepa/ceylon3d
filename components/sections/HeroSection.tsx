@@ -14,6 +14,8 @@ export function HeroSection() {
         loop
         muted
         playsInline
+        preload="metadata"
+        poster="/images/about/workshop.jpeg"
       />
 
       {/* Video Overlays */}

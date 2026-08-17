@@ -1,5 +1,6 @@
 import { Geist } from "next/font/google";
 import { SITE_METADATA } from "@/content";
+import { JsonLd, FloatingWhatsApp } from "@/components/layout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,7 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} scroll-smooth`} data-scroll-behavior="smooth">
-      <body className="bg-gray-950 text-gray-100 antialiased">{children}</body>
+      <body className="bg-gray-950 text-gray-100 antialiased">
+        <JsonLd />
+        {children}
+        <FloatingWhatsApp />
+      </body>
     </html>
   );
 }

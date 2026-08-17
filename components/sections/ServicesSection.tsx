@@ -436,7 +436,7 @@ export function ServicesSection() {
   if (shouldReduceMotion) return <ReducedMotionFallback />;
 
   return (
-    <section id="services">
+    <section id="services" className="scroll-mt-24">
       {/* outer scroll container — 300vh drives the animation progress */}
       <div
         ref={containerRef}

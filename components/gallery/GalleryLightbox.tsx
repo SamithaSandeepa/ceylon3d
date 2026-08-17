@@ -97,7 +97,12 @@ export function GalleryLightbox({
   if (!isOpen || !category || images.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col bg-gray-950/98 backdrop-blur-md transition-opacity duration-300">
+    <div 
+      className="fixed inset-0 z-[100] flex flex-col bg-gray-950/98 backdrop-blur-md transition-opacity duration-300"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Gallery viewer for ${category.name}`}
+    >
       
       {/* --- HEADER --- */}
       <div className="absolute top-0 inset-x-0 z-20 flex items-center justify-between p-4 sm:p-6 lg:p-8 bg-gradient-to-b from-gray-950/80 to-transparent pointer-events-none">

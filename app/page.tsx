@@ -3,6 +3,7 @@ import {
   HeroSection,
   ServicesSection,
   WhyUsSection,
+  VisualBreak,
   ProcessSection,
   RatingBanner,
   ContactSection,
@@ -26,6 +27,7 @@ export default async function Home() {
         <HeroSection />
         <ServicesSection />
         <WhyUsSection />
+        <VisualBreak />
         <ProcessSection />
         <GalleryPreview categories={categories} />
         <RatingBanner />

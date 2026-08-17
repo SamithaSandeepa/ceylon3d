@@ -7,7 +7,8 @@ export const SITE_CONFIG = {
   companyNameShort: "Ceylon",
   companyNameHighlight: "3D",
   phone: "074 311 7565",
-  phoneHref: "tel:0743117565",
+  phoneHref: "tel:+94743117565",
+  whatsappNumber: "94743117565",
   address: {
     line1: "No 23 Gonavila, Makandura 60170",
     line2: "Public Library Shopping Complex",
@@ -15,5 +16,7 @@ export const SITE_CONFIG = {
   location: "Makandura",
   googleRating: "5.0",
   googleRatingStars: "★★★★★",
-  copyrightYear: "2025",
+  googleReviewsUrl: "https://www.google.com/search?q=Ceylon+3D+Makandura",
+  copyrightYear: new Date().getFullYear().toString(),
+  url: "https://www.ceylon3d.com",
 } as const;
