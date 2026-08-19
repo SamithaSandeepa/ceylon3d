@@ -1,5 +1,37 @@
 @import "tailwindcss";
 
+/* ─── Semantic Design Tokens ────────────────────────────────────────────────
+ * Change brand, background, or surface colours here.
+ * To rebrand orange → blue: update --color-brand and --color-brand-hover only.
+ * These tokens back animations and can be referenced in CSS with var(--*).
+ * Tailwind class names (bg-gray-950, text-orange-500, etc.) are unchanged —
+ * they still control component-level styling directly.
+ * ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --color-brand:        #f97316; /* orange-500 */
+  --color-brand-hover:  #fb923c; /* orange-400 */
+  --color-brand-light:  rgba(249, 115, 22, 0.10);
+  --color-brand-border: rgba(249, 115, 22, 0.20);
+
+  /* Background layers */
+  --color-bg:           #030712; /* gray-950 */
+  --color-surface:      #111827; /* gray-900 */
+  --color-surface-elevated: #0a0a0f;
+
+  /* Text */
+  --color-foreground:   #ffffff;
+  --color-muted:        #9ca3af; /* gray-400 */
+  --color-dim:          #6b7280; /* gray-500 */
+
+  /* Borders */
+  --color-border:       rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.18);
+
+  /* Accent (amber) */
+  --color-accent:       #f59e0b; /* amber-500 */
+}
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
 }
@@ -8,20 +40,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50%       { transform: translateY(-12px); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.8); }
+  0%, 100% { box-shadow: 0 0 20px rgba(var(--color-brand), 0.4); }
+  50%       { box-shadow: 0 0 40px rgba(var(--color-brand), 0.8); }
 }
 
 @keyframes slide-up {
   from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ─── Utility Classes ─────────────────────────────────────────────────────── */
 
 .float-anim {
   animation: float 4s ease-in-out infinite;
@@ -36,11 +72,11 @@ html {
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(249, 115, 22, 0.15);
+  box-shadow: 0 20px 40px color-mix(in srgb, var(--color-brand) 15%, transparent);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #f97316, #fb923c, #fbbf24);
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-hover), var(--color-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -50,11 +86,12 @@ html {
   animation: slide-up 0.6s ease forwards;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #030712; }
-::-webkit-scrollbar-thumb { background: #f97316; border-radius: 3px; }
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-brand); border-radius: 3px; }
 
+/* ─── Reduced Motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .float-anim,
   .glow-btn,
@@ -63,3 +100,4 @@ html {
     transition: none !important;
   }
 }
+

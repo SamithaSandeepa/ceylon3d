@@ -59,9 +59,12 @@ export function GalleryLightbox({
 
   useEffect(() => {
     if (!mainApi) return;
-    onSelect();
     mainApi.on("select", onSelect);
     mainApi.on("reInit", onSelect);
+    return () => {
+      mainApi.off("select", onSelect);
+      mainApi.off("reInit", onSelect);
+    };
   }, [mainApi, onSelect]);
 
   useEffect(() => {

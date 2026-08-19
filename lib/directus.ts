@@ -7,7 +7,14 @@
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 
-const DIRECTUS_BASE_URL = "https://cms.print3d.hitinnovations.lk";
+/**
+ * Directus base URL.
+ * Override by setting NEXT_PUBLIC_DIRECTUS_URL in your .env.local file.
+ * Example: NEXT_PUBLIC_DIRECTUS_URL=https://cms.example.com
+ */
+const DIRECTUS_BASE_URL =
+  process.env.NEXT_PUBLIC_DIRECTUS_URL ??
+  "https://cms.print3d.hitinnovations.lk";
 
 // ─── Asset URL helper ───────────────────────────────────────────────────────
 

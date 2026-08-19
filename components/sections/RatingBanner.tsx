@@ -6,7 +6,8 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { SITE_CONFIG } from "@/config/site";
-import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_URL, type GoogleReview } from "@/content/reviews";
+import { GOOGLE_REVIEWS } from "@/content/reviews";
+import type { GoogleReview } from "@/types/reviews";
 import { SectionHeader } from "@/components/ui";
 
 /* ──────────────────── Google G Icon ──────────────────── */
@@ -222,7 +223,7 @@ export function RatingBanner() {
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-white/[0.04]">
           {/* View on Google Link */}
           <a
-            href={GOOGLE_REVIEWS_URL}
+            href={SITE_CONFIG.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-orange-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 rounded-sm py-1"

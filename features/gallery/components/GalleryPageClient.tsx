@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { GalleryCategory } from "@/types/gallery";
+import type { GalleryCategory } from "@/types/gallery";
 import { GalleryCategoryTabs } from "@/components/gallery/GalleryCategoryTabs";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
 import { motion, AnimatePresence } from "framer-motion";
 import { Suspense } from "react";
 
-interface GalleryPageClientProps {
+export interface GalleryPageClientProps {
   initialCategory: string;
   categories: GalleryCategory[];
 }
@@ -18,22 +18,12 @@ function GalleryPageInner({ initialCategory, categories }: GalleryPageClientProp
   const router = useRouter();
   const searchParams = useSearchParams();
   
-  const [activeCategoryFilter, setActiveCategoryFilter] = useState(initialCategory);
+  const activeCategoryFilter = searchParams.get("category") ?? initialCategory;
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxCategory, setLightboxCategory] = useState<GalleryCategory | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  useEffect(() => {
-    const categoryParam = searchParams.get("category");
-    if (categoryParam) {
-      setActiveCategoryFilter(categoryParam);
-    } else {
-      setActiveCategoryFilter("all");
-    }
-  }, [searchParams]);
-
   const handleCategorySelect = (slug: string) => {
-    setActiveCategoryFilter(slug);
     if (slug === "all") {
       router.push("/gallery", { scroll: false });
     } else {

@@ -4,7 +4,7 @@ import {
   ServicesSection,
   WhyUsSection,
   VisualBreak,
-  ProcessSection,
+  ImpactSection,
   RatingBanner,
   ContactSection,
 } from "@/components/sections";
@@ -28,7 +28,7 @@ export default async function Home() {
         <ServicesSection />
         <WhyUsSection />
         <VisualBreak />
-        <ProcessSection />
+        <ImpactSection />
         <GalleryPreview categories={categories} />
         <RatingBanner />
         <ContactSection />

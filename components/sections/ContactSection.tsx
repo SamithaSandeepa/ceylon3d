@@ -103,7 +103,7 @@ I can send my CAD file/reference images here.`;
                     <ShieldCheck size={14} />
                     Direct Engineering Support
                   </span>
-                  <span className="font-mono text-[10px] text-white/60">Makandura, LK</span>
+                  <span className="font-mono text-[10px] text-white/60">{SITE_CONFIG.location}, LK</span>
                 </div>
               </div>
             </div>

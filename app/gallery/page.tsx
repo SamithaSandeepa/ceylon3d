@@ -1,30 +1,16 @@
 import { Navbar, Footer } from "@/components/layout";
-import { GalleryPageClient } from "./GalleryPageClient";
+import { SectionHeader } from "@/components/ui";
+import { GalleryPageClient } from "@/features/gallery/components/GalleryPageClient";
 import { fetchCategories } from "@/lib/gallery-api";
-import type { GalleryCategory } from "@/types/gallery";
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 import { SITE_CONFIG } from "@/config/site";
+import type { GalleryCategory } from "@/types/gallery";
 
-export const metadata: Metadata = {
-  title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
+export const metadata = buildPageMetadata({
+  title: "3D Printing Gallery",
   description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
-  alternates: {
-    canonical: "/gallery",
-  },
-  openGraph: {
-    title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
-    description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
-    url: `${SITE_CONFIG.url}/gallery`,
-    siteName: SITE_CONFIG.companyName,
-    locale: "en_LK",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `3D Printing Gallery | ${SITE_CONFIG.companyName}`,
-    description: `Explore 3D printed replacement parts, prototypes, custom products and engineering components produced by ${SITE_CONFIG.companyName} in Sri Lanka.`,
-  },
-};
+  path: "/gallery",
+});
 
 export default async function GalleryPage({
   searchParams,
@@ -47,20 +33,13 @@ export default async function GalleryPage({
       <Navbar />
       <main className="pt-32 sm:pt-40 pb-24 lg:pb-36">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 sm:mb-16">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-px w-8 bg-orange-500/50" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                OUR WORK
-              </span>
-            </div>
-            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.25rem] mb-6">
-              Gallery
-            </h1>
-            <p className="max-w-2xl text-base leading-7 text-gray-400">
-              Browse completed parts, custom products and 3D printing work.
-            </p>
-          </div>
+          <SectionHeader
+            eyebrow="OUR WORK"
+            heading="Gallery"
+            description="Browse completed parts, custom products and 3D printing work."
+            align="left"
+            className="mb-12 sm:mb-16"
+          />
           
           <GalleryPageClient 
             initialCategory={initialCategory} 

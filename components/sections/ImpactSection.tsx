@@ -5,7 +5,8 @@ import Link from "next/link";
 import { ArrowUpRight, Phone, Sparkles } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
-import { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA, type BusinessStat } from "@/content/impact";
+import { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA } from "@/content/impact";
+import type { BusinessStat } from "@/types/impact";
 import { GlowButton } from "@/components/ui";
 
 /* ──────────────── Helper: Animated Count-up ─────────────── */
@@ -34,7 +35,6 @@ function AnimatedNumber({
     const updateCounter = (now: number) => {
       const elapsed = (now - startTime) / 1000;
       const progress = Math.min(elapsed / duration, 1);
-      // Exponential ease-out
       const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       const current = start + (end - start) * easeOut;
       setDisplayValue(current);
@@ -93,7 +93,7 @@ function StatCard({ stat, isLast }: { stat: BusinessStat; isLast: boolean }) {
 
 /* ════════════════════ MAIN COMPONENT ════════════════════ */
 
-export function ProcessSection() {
+export function ImpactSection() {
   return (
     <section id="numbers" className="scroll-mt-24 relative bg-gray-950 py-20 sm:py-28 lg:py-32 overflow-hidden">
       {/* Top separator */}
