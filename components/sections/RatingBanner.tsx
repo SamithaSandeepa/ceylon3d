@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { SITE_CONFIG } from "@/config/site";
 import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_URL, type GoogleReview } from "@/content/reviews";
+import { SectionHeader } from "@/components/ui";
 
 /* ──────────────────── Google G Icon ──────────────────── */
 
@@ -167,28 +168,15 @@ export function RatingBanner() {
         {/* ─── Header & Google Rating Summary ─── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16">
           {/* Left Heading */}
-          <motion.div
+          <SectionHeader
+            eyebrow="CUSTOMER REVIEWS"
+            headingPrefix="What our"
+            headingHighlight="customers say"
+            headingSuffix="."
+            description="Feedback from customers who trusted Ceylon 3D with their parts, prototypes and custom printing requirements."
+            align="left"
             className="max-w-2xl"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-orange-500/50" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                CUSTOMER REVIEWS
-              </span>
-            </div>
-
-            <h2 className="mb-4 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-              What our <span className="text-orange-500">customers say</span>.
-            </h2>
-
-            <p className="text-base leading-7 text-gray-400">
-              Feedback from customers who trusted Ceylon 3D with their parts, prototypes and custom printing requirements.
-            </p>
-          </motion.div>
+          />
 
           {/* Right Google Rating Badge */}
           <motion.div

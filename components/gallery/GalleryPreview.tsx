@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { CategoryCard } from "./CategoryCard";
 import { GalleryLightbox } from "./GalleryLightbox";
 import { GalleryCategory } from "@/types/gallery";
+import { SectionHeader } from "@/components/ui";
 
 interface GalleryPreviewProps {
   categories: GalleryCategory[];
@@ -27,30 +28,17 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header Section */}
-        <motion.div 
+        <SectionHeader
+          eyebrow="OUR WORK"
+          headingPrefix="Selected"
+          headingHighlight="Work"
+          headingSuffix="."
+          description="A glimpse at parts, products and solutions created through 3D printing."
+          align="left"
           className="mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="mb-6 flex items-center gap-3">
-            <div className="h-px w-8 bg-orange-500/50" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-              OUR WORK
-            </span>
-          </div>
-          
-          <h2 className="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]">
-            Selected <span className="text-orange-500">Work</span>
-          </h2>
-          
-          <p className="max-w-2xl text-base leading-7 text-gray-400">
-            A glimpse at parts, products and solutions created through 3D printing.
-          </p>
-        </motion.div>
+        />
 
         {/* Empty State */}
         {categories.length === 0 && (
@@ -70,9 +58,9 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <CategoryCard 
-                  category={category} 
-                  onClick={() => handleCategoryClick(category)} 
+                <CategoryCard
+                  category={category}
+                  onClick={() => handleCategoryClick(category)}
                 />
               </motion.div>
             ))}
@@ -81,7 +69,7 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
 
         {/* Footer CTA */}
         <div className="mt-8 flex justify-center sm:justify-end">
-          <Link 
+          <Link
             href="/gallery"
             className="group inline-flex items-center gap-2 text-sm font-medium text-white/70 transition-colors duration-300 hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 rounded-sm py-1"
           >
@@ -91,7 +79,7 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
         </div>
       </div>
 
-      <GalleryLightbox 
+      <GalleryLightbox
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
         category={selectedCategory}

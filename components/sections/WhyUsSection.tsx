@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MapPin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
+import { SectionHeader } from "@/components/ui";
 
 export function WhyUsSection() {
   return (
@@ -18,32 +19,19 @@ export function WhyUsSection() {
           
           {/* ── Left Column: Editorial Typography & Story ── */}
           <div className="lg:col-span-5">
-            {/* Eyebrow */}
-            <motion.div
-              className="mb-6 flex items-center gap-3"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="h-px w-8 bg-orange-500/50" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                About Ceylon 3D
-              </span>
-            </motion.div>
-
-            {/* Editorial Heading */}
-            <motion.h2
-              className="mb-6 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.08 }}
-            >
-              Engineering ideas
-              <br />
-              into <span className="text-orange-500">real things</span>.
-            </motion.h2>
+            {/* Header */}
+            <SectionHeader
+              eyebrow="About Ceylon 3D"
+              heading={
+                <>
+                  Engineering ideas
+                  <br />
+                  into <span className="text-orange-500">real things</span>.
+                </>
+              }
+              align="left"
+              className="mb-6"
+            />
 
             {/* Story Paragraphs */}
             <motion.div

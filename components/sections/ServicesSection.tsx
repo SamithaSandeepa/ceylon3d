@@ -12,6 +12,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "framer-motion";
+import { SectionHeader } from "@/components/ui";
 
 /* ────────────────────── service data ────────────────────── */
 
@@ -261,20 +262,14 @@ function ReducedMotionFallback() {
     <section id="services" className="scroll-mt-24 bg-gray-950 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* heading */}
-        <div className="mb-14 text-center">
-          <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-            What We Do
-          </span>
-          <h2 className="mb-4 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
-            From idea to{" "}
-            <span className="text-orange-500">physical part</span>.
-          </h2>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg">
-            From early-stage prototypes and reverse engineering to
-            production-quality 3D printing, we help transform ideas and existing
-            components into accurate physical parts.
-          </p>
-        </div>
+        <SectionHeader
+          eyebrow="What We Do"
+          headingPrefix="From idea to"
+          headingHighlight="physical part"
+          headingSuffix="."
+          description="From early-stage prototypes and reverse engineering to production-quality 3D printing, we help transform ideas and existing components into accurate physical parts."
+          className="mb-14"
+        />
 
         {/* simple card grid */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -370,46 +365,6 @@ function ProgressBar({ activeIndex }: { activeIndex: number }) {
   );
 }
 
-/* ──────────────── section heading ───────────────────── */
-
-function SectionHeading() {
-  return (
-    <div className="relative z-20 shrink-0 px-4 pt-12 pb-2 text-center sm:px-6 sm:pt-14 sm:pb-3">
-      <motion.span
-        className="mb-3 inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-      >
-        What We Do
-      </motion.span>
-
-      <motion.h2
-        className="mb-3 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.08 }}
-      >
-        From idea to <span className="text-orange-500">physical part</span>.
-      </motion.h2>
-
-      <motion.p
-        className="mx-auto max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg"
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-      >
-        From early-stage prototypes and reverse engineering to
-        production-quality 3D printing, we help transform ideas and existing
-        components into accurate physical parts.
-      </motion.p>
-    </div>
-  );
-}
-
 /* ═══════════════════ MAIN COMPONENT ═══════════════════ */
 
 export function ServicesSection() {
@@ -449,7 +404,14 @@ export function ServicesSection() {
           <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
           {/* heading (compact, above cards) */}
-          <SectionHeading />
+          <SectionHeader
+            eyebrow="What We Do"
+            headingPrefix="From idea to"
+            headingHighlight="physical part"
+            headingSuffix="."
+            description="From early-stage prototypes and reverse engineering to production-quality 3D printing, we help transform ideas and existing components into accurate physical parts."
+            className="relative z-20 shrink-0 px-4 pt-12 pb-2 text-center sm:px-6 sm:pt-14 sm:pb-3"
+          />
 
           {/* ── card animation area — fills remaining height ── */}
           <div className="relative min-h-0 flex-1">
