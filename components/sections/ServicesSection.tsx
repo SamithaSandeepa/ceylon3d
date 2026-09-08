@@ -54,7 +54,7 @@ export function ServicesSection() {
             headingPrefix="From idea to"
             headingHighlight="physical part"
             headingSuffix="."
-            description="From early-stage prototypes and reverse engineering to production-quality 3D printing, we help transform ideas and existing components into accurate physical parts."
+            description="From early stage prototypes and reverse engineering to production quality 3D printing, we help transform ideas and existing components into accurate physical parts."
             className="relative z-20 shrink-0 px-4 pt-12 pb-2 text-center sm:px-6 sm:pt-14 sm:pb-3"
           />
 

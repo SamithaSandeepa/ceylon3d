@@ -43,7 +43,7 @@ export function VisualBreak() {
             headingPrefix="Precision at"
             headingHighlight="every layer"
             headingSuffix="."
-            description="From CAD geometry and reverse-engineered scans to functional, production-grade physical components."
+            description="From CAD geometry and reverse engineered scans to functional, production grade physical components."
             align="left"
             className="mb-8"
           />

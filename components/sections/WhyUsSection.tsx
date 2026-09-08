@@ -50,7 +50,7 @@ export function WhyUsSection() {
               </p>
               <p className="text-base leading-7 text-gray-400">
                 Our approach combines practical engineering support with accessible
-                local manufacturing — helping customers move from an idea or
+                local manufacturing  helping customers move from an idea or
                 digital design to a finished physical product.
               </p>
             </motion.div>

@@ -5,7 +5,7 @@ export const IMPACT_HEADER = {
   headingPrefix: "Built around real ",
   headingHighlight: "ideas and real parts",
   description:
-    "From one-off replacement parts to prototypes and custom products, we help turn real requirements into manufacturable solutions.",
+    "From one off replacement parts to prototypes and custom products, we help turn real requirements into manufacturable solutions.",
 };
 
 export const BUSINESS_STATS: BusinessStat[] = [
