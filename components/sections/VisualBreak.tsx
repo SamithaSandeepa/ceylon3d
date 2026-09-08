@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { SectionHeader } from "@/components/ui";
 
 export function VisualBreak() {
   return (
@@ -36,43 +37,36 @@ export function VisualBreak() {
 
       {/* ── Editorial Content Overlay ── */}
       <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <motion.div
-          className="max-w-xl"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
-        >
-          {/* Eyebrow */}
-          <div className="mb-4 inline-flex items-center gap-2.5 rounded-full border border-orange-500/30 bg-orange-500/[0.08] px-3.5 py-1 text-[11px] font-mono uppercase tracking-[0.2em] text-orange-400 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
-            DIGITAL &rarr; PHYSICAL
-          </div>
-
-          {/* Heading */}
-          <h2 className="mb-4 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Precision at <br />
-            <span className="text-orange-500">every layer</span>.
-          </h2>
-
-          {/* Description */}
-          <p className="mb-8 text-base sm:text-lg leading-relaxed text-gray-300">
-            From CAD geometry and reverse-engineered scans to functional,
-            production-grade physical components.
-          </p>
+        <div className="max-w-xl">
+          <SectionHeader
+            eyebrow="DIGITAL → PHYSICAL"
+            headingPrefix="Precision at"
+            headingHighlight="every layer"
+            headingSuffix="."
+            description="From CAD geometry and reverse-engineered scans to functional, production-grade physical components."
+            align="left"
+            className="mb-8"
+          />
 
           {/* Action Link */}
-          <Link
-            href="/gallery"
-            className="group inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/[0.06] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-orange-500/50 hover:bg-orange-500/[0.12] hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span>Explore our work</span>
-            <ArrowUpRight
-              size={16}
-              className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-          </Link>
-        </motion.div>
+            <Link
+              href="/gallery"
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/[0.06] px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:border-orange-500/50 hover:bg-orange-500/[0.12] hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+            >
+              <span>Explore our work</span>
+              <ArrowUpRight
+                size={16}
+                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </motion.div>
+        </div>
       </div>
 
       {/* Bottom separator */}

@@ -7,7 +7,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA } from "@/content/impact";
 import type { BusinessStat } from "@/types/impact";
-import { GlowButton } from "@/components/ui";
+import { GlowButton, SectionHeader } from "@/components/ui";
 
 /* ──────────────── Helper: Animated Count-up ─────────────── */
 
@@ -105,29 +105,15 @@ export function ImpactSection() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start mb-16 sm:mb-20">
           
           {/* Header Column */}
-          <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-orange-500/50" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                {IMPACT_HEADER.eyebrow}
-              </span>
-            </div>
-
-            <h2 className="mb-6 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-              {IMPACT_HEADER.headingPrefix}
-              <span className="text-orange-500">{IMPACT_HEADER.headingHighlight}</span>
-            </h2>
-
-            <p className="text-base leading-7 text-gray-400">
-              {IMPACT_HEADER.description}
-            </p>
-          </motion.div>
+          <div className="lg:col-span-5">
+            <SectionHeader
+              eyebrow={IMPACT_HEADER.eyebrow}
+              headingPrefix={IMPACT_HEADER.headingPrefix}
+              headingHighlight={IMPACT_HEADER.headingHighlight}
+              description={IMPACT_HEADER.description}
+              align="left"
+            />
+          </div>
 
           {/* Business Counters Grid */}
           <motion.div

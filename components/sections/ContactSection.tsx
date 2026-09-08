@@ -6,6 +6,7 @@ import { MapPin, Phone, Clock3, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { BUSINESS_HOURS } from "@/content";
+import { SectionHeader } from "@/components/ui";
 import Link from "next/link";
 
 export function ContactSection() {
@@ -70,21 +71,18 @@ I can send my CAD file/reference images here.`;
             transition={{ duration: 0.5 }}
           >
             {/* Header */}
-            <div className="mb-8">
-              <div className="mb-6 flex items-center gap-3">
-                <div className="h-px w-8 bg-orange-500/50" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                  Get In Touch
-                </span>
-              </div>
-              <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
-                Let&apos;s build your <br className="hidden sm:block" />
-                <span className="text-orange-500">next part</span>.
-              </h2>
-              <p className="text-base leading-7 text-gray-400">
-                Tell us what you need, share your CAD model or reference component, and we&apos;ll help you determine the optimal manufacturing method.
-              </p>
-            </div>
+            <SectionHeader
+              eyebrow="Get In Touch"
+              heading={
+                <>
+                  Let&apos;s build your <br className="hidden sm:block" />
+                  <span className="text-orange-500">next part</span>.
+                </>
+              }
+              description="Tell us what you need, share your CAD model or reference component, and we'll help you determine the optimal manufacturing method."
+              align="left"
+              className="mb-8"
+            />
 
             {/* Integrated Precision Imagery Break */}
             <div className="group relative mb-10 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0f] shadow-xl">

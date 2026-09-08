@@ -34,6 +34,16 @@
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
+  
+  /* ─── Map Tailwind Utilities to CSS Variables ──────────────────────────────
+   * This connects Tailwind classes (bg-gray-950, text-orange-500, etc.)
+   * directly to the variables in :root above.
+   * Changing --color-bg or --color-brand above will update all sections instantly.
+   * ─────────────────────────────────────────────────────────────────────────── */
+  --color-gray-950: var(--color-bg);
+  --color-gray-900: var(--color-surface);
+  --color-orange-500: var(--color-brand);
+  --color-orange-400: var(--color-brand-hover);
 }
 
 html {
