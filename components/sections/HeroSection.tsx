@@ -36,7 +36,7 @@ export function HeroSection() {
           {/* Headline */}
           <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black text-white leading-[1.05] sm:leading-[1.05] mb-6">
             {headline.prefix}
-            <span className="text-orange-500">{headline.highlight}</span>
+            <span className="text-orange-500">{headline.highlight}</span>.
           </h1>
 
           {/* Description */}

@@ -111,6 +111,7 @@ export function ImpactSection() {
               headingPrefix={IMPACT_HEADER.headingPrefix}
               headingHighlight={IMPACT_HEADER.headingHighlight}
               description={IMPACT_HEADER.description}
+              headingSuffix="."
               align="left"
             />
           </div>

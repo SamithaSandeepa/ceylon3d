@@ -3,7 +3,7 @@ import type { BusinessStat } from "@/types/impact";
 export const IMPACT_HEADER = {
   eyebrow: "CEYLON 3D IN NUMBERS",
   headingPrefix: "Built around real ",
-  headingHighlight: "ideas and real parts.",
+  headingHighlight: "ideas and real parts",
   description:
     "From one-off replacement parts to prototypes and custom products, we help turn real requirements into manufacturable solutions.",
 };

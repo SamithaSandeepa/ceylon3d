@@ -4,7 +4,7 @@ export const HERO_CONTENT: HeroContent = {
   eyebrow: "ADDITIVE MANUFACTURING · MAKANDURA",
   headline: {
     prefix: "From idea to\n",
-    highlight: "physical part.",
+    highlight: "physical part",
   },
   subtext:
     "Professional prototyping, 3D scanning and 3D printing for replacement parts, custom components and product development.",
