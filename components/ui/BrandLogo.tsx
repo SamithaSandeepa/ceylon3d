@@ -1,24 +1,25 @@
 import Image from "next/image";
 
 /**
- * Official Ceylon 3D logo — transparent PNG.
- * File: /images/brand/C3D_New_Black-removebg-preview.png
+ * Official Ceylon 3D logo — tightly-cropped transparent PNG.
  *
- * No mix-blend-mode required — the PNG has a transparent background.
- * Both Navbar and Footer share this component.
+ * Asset: /images/brand/ceylon3d-logo-transparent.png
+ * Dimensions: 689 × 213 px  |  Aspect ratio: 3.235 : 1
  *
- * Sizing rationale
- * ────────────────
- * The logo is a wide horizontal artwork (~4.2 : 1) with two text rows:
- *   Row 1 — "Ceylon 3D"  (large)
- *   Row 2 — "Built Beyond Imagination"  (smaller tagline)
+ * The source image was cropped from the original 814 × 306 PNG which had
+ * ~14% top / ~17% bottom / ~8% side transparent padding. At the old container
+ * sizes, the actual visible content occupied only 68% of the container height,
+ * making the tagline ~8px — unreadable. The cropped asset eliminates that waste.
  *
- * The tagline needs a minimum rendered height of ~11–13px to be legible.
- * At h-12 (48px) the tagline renders at ≈11px on a 96dpi screen — just clear.
- * At h-14 (56px) on desktop it is comfortably visible.
- * Footer uses h-16 (64px) for stronger brand presence.
+ * Container sizes are calculated from the exact 3.235 content ratio so
+ * object-contain never letterboxes — the image fills the container precisely.
  *
- * Container widths are set proportionally so object-contain never letterboxes.
+ * Sizes by variant:
+ * ─────────────────────────────────────────────────────────────────────────────
+ * navbar  mobile  (< md):  h-[62px] × w-[200px]  — tagline ≈ 17px rendered ✓
+ * navbar  desktop (≥ md):  h-[76px] × w-[246px]  — tagline ≈ 21px rendered ✓
+ * footer           :       h-[88px] × w-[285px]  — tagline ≈ 24px rendered ✓
+ * ─────────────────────────────────────────────────────────────────────────────
  */
 
 interface BrandLogoProps {
@@ -26,16 +27,21 @@ interface BrandLogoProps {
   className?: string;
 }
 
+/*
+ * Width = height × 3.235 (exact content ratio).
+ * Heights chosen to balance readability with navbar proportions:
+ *   navbar mobile  80px bar →  62px logo → 9px top/bottom breathing room
+ *   navbar desktop 96px bar →  76px logo → 10px top/bottom breathing room
+ *   footer         unconstrained → 88px for stronger brand presence
+ */
 const LOGO_DIMS = {
-  /** Mobile: 48px × 190px  |  Desktop md+: 56px × 230px */
   navbar: {
-    containerClass: "h-12 w-[190px] md:h-14 md:w-[230px]",
-    sizes: "(max-width: 768px) 190px, 230px",
+    containerClass: "h-[62px] w-[200px] md:h-[76px] md:w-[246px]",
+    sizes: "(max-width: 768px) 200px, 246px",
   },
-  /** Footer brand column: 64px × 260px */
   footer: {
-    containerClass: "h-16 w-[260px]",
-    sizes: "260px",
+    containerClass: "h-[88px] w-[285px]",
+    sizes: "285px",
   },
 } as const;
 
@@ -43,9 +49,14 @@ export function BrandLogo({ size = "navbar", className = "" }: BrandLogoProps) {
   const { containerClass, sizes } = LOGO_DIMS[size];
 
   return (
-    <div className={`relative ${containerClass} ${className}`}>
+    /*
+     * No overflow-hidden — never clip the logo.
+     * No mix-blend-mode — the PNG is already transparent.
+     * shrink-0 guards against parent flex containers squashing the container.
+     */
+    <div className={`relative shrink-0 ${containerClass} ${className}`}>
       <Image
-        src="/images/brand/C3D_New_Black-removebg-preview.png"
+        src="/images/brand/ceylon3d-logo-transparent.png"
         alt="Ceylon 3D — Built Beyond Imagination"
         fill
         className="object-contain object-left"
