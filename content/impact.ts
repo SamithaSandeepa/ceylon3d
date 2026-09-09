@@ -38,6 +38,6 @@ export const IMPACT_CTA = {
   heading: "Ready to make it real?",
   description:
     "Share your requirement and we'll help determine the right prototyping, scanning or printing approach.",
-  primaryLabel: "Start a Project →",
+  primaryLabel: "Start a Project",
   primaryHref: "/#contact",
 };

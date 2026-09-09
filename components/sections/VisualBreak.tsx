@@ -9,9 +9,6 @@ import { SectionHeader } from "@/components/ui";
 export function VisualBreak() {
   return (
     <section className="relative min-h-[460px] sm:min-h-[540px] lg:min-h-[620px] w-full overflow-hidden bg-gray-950 flex items-center">
-      {/* Top separator */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
-
       {/* ── Background Immersive Manufacturing Image ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
@@ -28,11 +25,21 @@ export function VisualBreak() {
           className="object-cover object-[70%_center] lg:object-center"
         />
 
-        {/* Directional gradient overlay: darker on the left for crisp typography, subtle on the right */}
+        {/* Directional gradient: darker on left for crisp typography, fades right */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/75 to-gray-950/20 lg:via-gray-950/50" />
-        
-        {/* Top/bottom edge fades */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-gray-950/40" />
+
+        {/*
+         * Top blend: full gray-950 → transparent
+         * Blends the section edge into the dark section above so the image
+         * appears to emerge from the page rather than sitting in a box.
+         */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-gray-950 via-gray-950/60 to-transparent" />
+
+        {/*
+         * Bottom blend: transparent → full gray-950
+         * Matches the section above so the next section appears continuous.
+         */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
       </motion.div>
 
       {/* ── Editorial Content Overlay ── */}
@@ -62,15 +69,14 @@ export function VisualBreak() {
               <span>Explore our work</span>
               <ArrowUpRight
                 size={16}
-                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                strokeWidth={2}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               />
             </Link>
           </motion.div>
         </div>
       </div>
-
-      {/* Bottom separator */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
     </section>
   );
 }

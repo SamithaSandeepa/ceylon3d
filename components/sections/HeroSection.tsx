@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { HERO_CONTENT } from "@/content";
 import { GlowButton } from "@/components/ui";
 
@@ -54,6 +55,12 @@ export function HeroSection() {
               className="text-white hover:text-orange-400 font-semibold text-lg transition-colors flex items-center gap-2 group"
             >
               {secondaryCTA.label}
+              <ArrowUpRight
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
             </a>
           </div>
 

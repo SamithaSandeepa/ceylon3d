@@ -36,7 +36,7 @@ export function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-gray-300 hover:text-orange-400 text-sm font-medium transition-colors"
+              className="text-gray-300 hover:text-orange-400 text-[15px] font-medium transition-colors"
             >
               {l.label}
             </Link>
@@ -45,7 +45,7 @@ export function Navbar() {
 
         <a
           href={SITE_CONFIG.phoneHref}
-          className="hidden md:inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white text-[15px] font-semibold px-4 py-2 rounded-lg transition-colors"
         >
           <span>📞</span> {SITE_CONFIG.phone}
         </a>

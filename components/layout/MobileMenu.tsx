@@ -18,14 +18,14 @@ export function MobileMenu({ links, phoneLabel, phoneHref, onClose }: MobileMenu
           key={l.href}
           href={l.href}
           onClick={onClose}
-          className="block py-3 text-gray-300 hover:text-orange-400 border-b border-gray-800 text-sm"
+          className="block py-3 text-gray-300 hover:text-orange-400 border-b border-gray-800 text-[15px]"
         >
           {l.label}
         </Link>
       ))}
       <a
         href={phoneHref}
-        className="mt-3 flex items-center gap-2 bg-orange-500 text-white text-sm font-semibold px-4 py-2 rounded-lg w-fit"
+        className="mt-3 flex items-center gap-2 bg-orange-500 text-white text-[15px] font-semibold px-4 py-2 rounded-lg w-fit"
       >
         📞 {phoneLabel}
       </a>

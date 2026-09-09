@@ -25,11 +25,13 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-3">
+            {/* Description: bumped to text-[15px] for readability */}
+            <p className="text-gray-400 text-[15px] leading-relaxed max-w-sm mb-3">
               {FOOTER_CONTENT.description}
             </p>
 
-            <p className="text-gray-500 text-xs font-medium">
+            {/* Subline: was text-xs, now text-sm */}
+            <p className="text-gray-500 text-sm font-medium">
               {FOOTER_CONTENT.subline}
             </p>
           </div>
@@ -44,7 +46,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-200 inline-block"
+                    className="text-gray-400 hover:text-orange-400 text-[15px] transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -63,7 +65,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-200 inline-block"
+                    className="text-gray-400 hover:text-orange-400 text-[15px] transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -77,7 +79,7 @@ export function Footer() {
             <h4 className="text-white text-xs font-semibold uppercase tracking-[0.2em] mb-4 text-white/90">
               {FOOTER_CONTENT.contactTitle}
             </h4>
-            <div className="space-y-3.5 text-sm text-gray-400">
+            <div className="space-y-3.5 text-[15px] text-gray-400">
               {/* Phone */}
               <div className="flex items-start gap-2.5">
                 <Phone size={15} className="text-orange-400 shrink-0 mt-0.5" />
@@ -94,7 +96,8 @@ export function Footer() {
                 <MapPin size={15} className="text-orange-400 shrink-0 mt-0.5" />
                 <div>
                   <p>{FOOTER_CONTENT.contactItems.address.line1}</p>
-                  <p className="text-gray-500 text-xs mt-0.5">
+                  {/* Address line2 stays slightly smaller for visual hierarchy */}
+                  <p className="text-gray-500 text-[13px] mt-0.5">
                     {FOOTER_CONTENT.contactItems.address.line2}
                   </p>
                 </div>
@@ -110,11 +113,32 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+          {/* Copyright — legal area stays at text-xs */}
           <p className="text-gray-500 text-xs">
             &copy; {currentYear} {SITE_CONFIG.companyName}. All rights reserved.
           </p>
 
+          {/* Developer credit */}
+          <p className="text-gray-600 text-xs">
+            Developed by{" "}
+            <a
+              href="https://www.hitinnovations.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="HIT Innovations — website opens in a new tab"
+              className="group inline-flex items-center gap-1 text-gray-500 hover:text-orange-400 transition-colors duration-200"
+            >
+              HIT Innovations
+              <ArrowUpRight
+                size={12}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+          </p>
+
+          {/* Google rating */}
           <a
             href={FOOTER_CONTENT.ratingUrl}
             target="_blank"
@@ -126,7 +150,7 @@ export function Footer() {
               ★★★★★
             </span>
             <span>{FOOTER_CONTENT.ratingText}</span>
-            <ArrowUpRight size={13} className="text-gray-500 group-hover:text-orange-400 transition-colors" />
+            <ArrowUpRight size={13} aria-hidden="true" className="text-gray-500 group-hover:text-orange-400 transition-colors" />
           </a>
         </div>
       </div>
