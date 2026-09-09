@@ -5,6 +5,7 @@ import { useScrolled } from "@/hooks/useScrolled";
 import { NAV_LINKS } from "@/content";
 import { SITE_CONFIG } from "@/config/site";
 import { MobileMenu } from "./MobileMenu";
+import { BrandLogo } from "@/components/ui";
 import Link from "next/link";
 
 export function Navbar() {
@@ -20,14 +21,9 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white group-hover:scale-110 transition-transform">
-            {SITE_CONFIG.companyNameHighlight}
-          </div>
-          <span className="font-bold text-xl text-white">
-            {SITE_CONFIG.companyNameShort}
-            <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
-          </span>
+        {/* Official logo — linked to homepage */}
+        <Link href="/" aria-label="Ceylon 3D — go to homepage">
+          <BrandLogo size="navbar" />
         </Link>
 
         {/* Desktop nav */}

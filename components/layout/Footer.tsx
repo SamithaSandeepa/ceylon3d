@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone, MapPin, Clock3, ArrowUpRight } from "lucide-react";
 import { FOOTER_CONTENT } from "@/content/footer";
 import { SITE_CONFIG } from "@/config/site";
+import { BrandLogo } from "@/components/ui";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,14 +16,9 @@ export function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-16">
           {/* Brand Column (Wider: 4 cols) */}
           <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white transition-transform duration-300 group-hover:scale-105">
-                {SITE_CONFIG.companyNameHighlight}
-              </div>
-              <span className="font-bold text-xl text-white tracking-tight">
-                {SITE_CONFIG.companyNameShort}
-                <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
-              </span>
+            {/* Official logo — links to homepage */}
+            <Link href="/" aria-label="Ceylon 3D — go to homepage" className="inline-block mb-5">
+              <BrandLogo size="footer" />
             </Link>
 
             {/* Description: bumped to text-[15px] for readability */}

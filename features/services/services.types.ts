@@ -5,8 +5,6 @@ export interface ServiceItem {
   title: string;
   description: string;
   workflow: string;
-  cta: string;
-  href: string;
   image: string;
   icon: LucideIcon;
 }
