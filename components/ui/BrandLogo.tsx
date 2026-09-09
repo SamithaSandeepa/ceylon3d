@@ -1,47 +1,41 @@
 import Image from "next/image";
 
 /**
- * Official Ceylon 3D logo — transparent PNG artwork.
- *
+ * Official Ceylon 3D logo — transparent PNG.
  * File: /images/brand/C3D_New_Black-removebg-preview.png
- * Background-removed (transparent), white artwork — works directly on dark site.
- * No mix-blend-mode required.
  *
- * Both Navbar and Footer share this single component.
+ * No mix-blend-mode required — the PNG has a transparent background.
+ * Both Navbar and Footer share this component.
+ *
+ * Sizing rationale
+ * ────────────────
+ * The logo is a wide horizontal artwork (~4.2 : 1) with two text rows:
+ *   Row 1 — "Ceylon 3D"  (large)
+ *   Row 2 — "Built Beyond Imagination"  (smaller tagline)
+ *
+ * The tagline needs a minimum rendered height of ~11–13px to be legible.
+ * At h-12 (48px) the tagline renders at ≈11px on a 96dpi screen — just clear.
+ * At h-14 (56px) on desktop it is comfortably visible.
+ * Footer uses h-16 (64px) for stronger brand presence.
+ *
+ * Container widths are set proportionally so object-contain never letterboxes.
  */
 
 interface BrandLogoProps {
-  /** Controls rendered dimensions. */
   size?: "navbar" | "footer";
   className?: string;
 }
 
-/*
- * Sizing rationale:
- *
- * The logo has a horizontal layout (starburst mark + "Ceylon 3D" + tagline).
- * Estimated artwork aspect ratio ≈ 4.2 : 1 (wide).
- *
- * The tagline "Built Beyond Imagination" sits below the main text — it needs
- * a minimum rendered height of ~10–12px to be legible. At h-10 (40px) the
- * tagline renders at roughly 8–10px — just readable. At h-11 (44px) it is
- * clearly comfortable.
- *
- * Navbar (h-16 / 64px bar):
- *   Mobile  — h-10 (40px) × w-[170px] → fits comfortably beside hamburger
- *   Desktop — h-11 (44px) × w-[195px] → balanced against nav links + phone CTA
- *
- * Footer (more vertical space):
- *   h-12 (48px) × w-[210px] → stronger brand presence in the brand column
- */
 const LOGO_DIMS = {
+  /** Mobile: 48px × 190px  |  Desktop md+: 56px × 230px */
   navbar: {
-    containerClass: "h-10 w-[170px] md:h-11 md:w-[195px]",
-    sizes: "(max-width: 768px) 170px, 195px",
+    containerClass: "h-12 w-[190px] md:h-14 md:w-[230px]",
+    sizes: "(max-width: 768px) 190px, 230px",
   },
+  /** Footer brand column: 64px × 260px */
   footer: {
-    containerClass: "h-12 w-[210px]",
-    sizes: "210px",
+    containerClass: "h-16 w-[260px]",
+    sizes: "260px",
   },
 } as const;
 
@@ -49,11 +43,6 @@ export function BrandLogo({ size = "navbar", className = "" }: BrandLogoProps) {
   const { containerClass, sizes } = LOGO_DIMS[size];
 
   return (
-    /*
-     * position: relative is required by next/image fill.
-     * No overflow-hidden — the logo must not be clipped.
-     * No fixed aspect-square constraint — the container is explicitly wide.
-     */
     <div className={`relative ${containerClass} ${className}`}>
       <Image
         src="/images/brand/C3D_New_Black-removebg-preview.png"

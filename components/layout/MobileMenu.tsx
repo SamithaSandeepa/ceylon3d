@@ -1,5 +1,6 @@
 "use client";
 
+import { Phone } from "lucide-react";
 import type { NavLink } from "@/types";
 import Link from "next/link";
 
@@ -25,9 +26,10 @@ export function MobileMenu({ links, phoneLabel, phoneHref, onClose }: MobileMenu
       ))}
       <a
         href={phoneHref}
-        className="mt-3 flex items-center gap-2 bg-orange-500 text-white text-[15px] font-semibold px-4 py-2 rounded-lg w-fit"
+        className="mt-3 inline-flex items-center gap-2 bg-orange-500 text-white text-[15px] font-semibold px-4 py-2.5 rounded-lg"
       >
-        📞 {phoneLabel}
+        <Phone size={15} strokeWidth={2} aria-hidden="true" />
+        <span>{phoneLabel}</span>
       </a>
     </div>
   );

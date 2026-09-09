@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Phone } from "lucide-react";
 import { useScrolled } from "@/hooks/useScrolled";
 import { NAV_LINKS } from "@/content";
 import { SITE_CONFIG } from "@/config/site";
@@ -20,13 +21,19 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      {/*
+       * Bar height: h-20 on mobile (80px), h-24 on desktop (96px).
+       * This gives the horizontal logo enough vertical room to show
+       * both "Ceylon 3D" and the "Built Beyond Imagination" tagline clearly.
+       */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20 md:h-24">
+
         {/* Official logo — linked to homepage */}
         <Link href="/" aria-label="Ceylon 3D — go to homepage">
           <BrandLogo size="navbar" />
         </Link>
 
-        {/* Desktop nav */}
+        {/* Desktop navigation */}
         <div className="hidden md:flex items-center gap-8">
           {NAV_LINKS.map((l) => (
             <Link
@@ -39,18 +46,21 @@ export function Navbar() {
           ))}
         </div>
 
+        {/* Desktop phone CTA — Phone icon + number, vertically centred */}
         <a
           href={SITE_CONFIG.phoneHref}
-          className="hidden md:inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white text-[15px] font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white text-[15px] font-semibold px-4 py-2.5 rounded-lg transition-colors"
         >
-          <span>📞</span> {SITE_CONFIG.phone}
+          <Phone size={16} strokeWidth={2} aria-hidden="true" />
+          <span>{SITE_CONFIG.phone}</span>
         </a>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-gray-300 hover:text-orange-400"
+          className="md:hidden text-gray-300 hover:text-orange-400 p-1"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
@@ -62,7 +72,7 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile slide-down menu */}
       {menuOpen && (
         <MobileMenu
           links={NAV_LINKS}

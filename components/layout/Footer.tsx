@@ -110,10 +110,27 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-          {/* Copyright — legal area stays at text-xs */}
+          {/* Copyright */}
           <p className="text-gray-500 text-xs">
             &copy; {currentYear} {SITE_CONFIG.companyName}. All rights reserved.
           </p>
+
+          {/* Legal links */}
+          <div className="flex items-center gap-4 text-xs text-gray-600">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-gray-400 transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">&middot;</span>
+            <Link
+              href="/terms-and-conditions"
+              className="hover:text-gray-400 transition-colors duration-200"
+            >
+              Terms &amp; Conditions
+            </Link>
+          </div>
 
           {/* Developer credit */}
           <p className="text-gray-600 text-xs">
