@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Phone, Sparkles } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA } from "@/content/impact";
@@ -57,35 +57,46 @@ function AnimatedNumber({
   );
 }
 
-/* ──────────────── Single Stat Item Component ────────────── */
+/* ──────────────────── Single Stat Item ──────────────────── */
 
-function StatCard({ stat, isLast }: { stat: BusinessStat; isLast: boolean }) {
+function StatItem({ stat }: { stat: BusinessStat }) {
   return (
-    <div
-      className={`flex flex-col justify-between py-4 sm:py-6 px-4 lg:px-8 ${
-        !isLast ? "lg:border-r border-white/[0.08]" : ""
-      }`}
-    >
-      <div>
-        <div className="flex items-baseline gap-1 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white">
-          {stat.prefix && <span>{stat.prefix}</span>}
+    <div className="flex flex-col">
+      {/* Number — the dominant visual element */}
+      <div
+        className="flex items-baseline leading-none mb-3"
+        aria-label={`${stat.numericValue ?? stat.displayValue}${stat.suffix ?? ""} — ${stat.label}`}
+      >
+        {stat.prefix && (
+          <span className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
+            {stat.prefix}
+          </span>
+        )}
+        <span className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
           {typeof stat.numericValue === "number" ? (
             <AnimatedNumber value={stat.numericValue} decimals={stat.decimals ?? 0} />
           ) : (
-            <span>{stat.displayValue ?? ""}</span>
+            stat.displayValue ?? ""
           )}
-          {stat.suffix && <span className="text-orange-500 font-bold ml-0.5">{stat.suffix}</span>}
-        </div>
-
-        <h3 className="mt-3 text-base sm:text-lg font-bold text-white tracking-tight">
-          {stat.label}
-        </h3>
+        </span>
+        {stat.suffix && (
+          <span
+            aria-hidden="true"
+            className="ml-0.5 text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem] font-black text-orange-500 tracking-tight"
+          >
+            {stat.suffix}
+          </span>
+        )}
       </div>
 
+      {/* Label */}
+      <p className="text-sm font-semibold text-white/80 tracking-wide leading-tight mb-1.5">
+        {stat.label}
+      </p>
+
+      {/* Sublabel — muted detail */}
       {stat.sublabel && (
-        <p className="mt-2 text-xs leading-relaxed text-gray-400 font-medium">
-          {stat.sublabel}
-        </p>
+        <p className="text-xs text-gray-600 leading-relaxed">{stat.sublabel}</p>
       )}
     </div>
   );
@@ -95,16 +106,19 @@ function StatCard({ stat, isLast }: { stat: BusinessStat; isLast: boolean }) {
 
 export function ImpactSection() {
   return (
-    <section id="numbers" className="scroll-mt-24 relative bg-gray-950 py-20 sm:py-28 lg:py-32 overflow-hidden">
+    <section
+      id="numbers"
+      className="scroll-mt-24 relative bg-gray-950 py-20 sm:py-28 lg:py-32 overflow-hidden"
+    >
       {/* Top separator */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* ─── SECTION 1: CEYLON 3D IN NUMBERS GRID ─── */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start mb-16 sm:mb-20">
-          
-          {/* Header Column */}
+
+        {/* ─── SECTION 1: Editorial Header + Open Stat Row ─── */}
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 items-center mb-20 sm:mb-24">
+
+          {/* Left column: heading */}
           <div className="lg:col-span-5">
             <SectionHeader
               eyebrow={IMPACT_HEADER.eyebrow}
@@ -116,55 +130,82 @@ export function ImpactSection() {
             />
           </div>
 
-          {/* Business Counters Grid */}
+          {/* Right column: stat row — open, no container card */}
           <motion.div
-            className="lg:col-span-7 rounded-3xl border border-white/[0.08] bg-white/[0.02] p-4 sm:p-6 lg:p-8 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0">
-              {BUSINESS_STATS.map((stat, index) => (
-                <StatCard
+            {/*
+             * Mobile: vertical stack with horizontal rule between each stat.
+             * Tablet (sm:): horizontal row with left-border separators.
+             * Desktop: same as tablet, with extra horizontal padding.
+             */}
+            <div className="flex flex-col sm:flex-row sm:items-start">
+              {BUSINESS_STATS.map((stat, i) => (
+                <div
                   key={stat.id}
-                  stat={stat}
-                  isLast={index === BUSINESS_STATS.length - 1}
-                />
+                  className={[
+                    "flex-1",
+                    // Vertical separator on mobile; left-border on sm+
+                    i > 0
+                      ? "mt-8 pt-8 border-t border-white/[0.08] sm:mt-0 sm:pt-0 sm:border-t-0 sm:border-l sm:border-white/[0.08] sm:pl-8 lg:pl-12"
+                      : "",
+                    // Right padding to centre content in the column gap
+                    i < BUSINESS_STATS.length - 1
+                      ? "sm:pr-8 lg:pr-12"
+                      : "",
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  <StatItem stat={stat} />
+                </div>
               ))}
             </div>
           </motion.div>
         </div>
 
-        {/* ─── SECTION 2: CONTACT CTA STRIP ─── */}
+        {/* ─── SECTION 2: CTA Strip ─── */}
+        {/*
+         * Separated from the stats by a simple border-t line.
+         * No rounded card, no gradient box, no glow blob.
+         * The CTA feels like the natural editorial continuation of the numbers above.
+         */}
         <motion.div
-          className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-white/[0.04] via-white/[0.02] to-transparent p-8 sm:p-12 lg:p-14 shadow-2xl shadow-black/40"
-          initial={{ opacity: 0, y: 20 }}
+          className="border-t border-white/[0.08] pt-10 sm:pt-14"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          {/* Subtle background glow */}
-          <div className="pointer-events-none absolute -right-20 -top-20 w-80 h-80 rounded-full bg-orange-500/10 blur-3xl" />
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-16">
 
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 sm:gap-10">
-            {/* Left Content */}
-            <div className="max-w-2xl">
-              <div className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400/90">
-                <Sparkles size={14} className="text-orange-400" />
-                <span>{IMPACT_CTA.eyebrow}</span>
+            {/* Left: Message */}
+            <div className="max-w-xl">
+              {/* Eyebrow — small accent line + label */}
+              <div className="mb-3 flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="h-px w-5 shrink-0 bg-orange-500/60"
+                />
+                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
+                  {IMPACT_CTA.eyebrow}
+                </span>
               </div>
 
-              <h3 className="mb-3 text-2xl font-bold text-white sm:text-3xl lg:text-4xl tracking-tight">
+              <h3 className="mb-2 text-2xl font-bold text-white sm:text-3xl tracking-tight">
                 {IMPACT_CTA.heading}
               </h3>
 
-              <p className="text-sm sm:text-base leading-relaxed text-gray-400">
+              <p className="text-sm leading-relaxed text-gray-400">
                 {IMPACT_CTA.description}
               </p>
             </div>
 
-            {/* Right Action Buttons */}
+            {/* Right: Actions */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
               <GlowButton href={IMPACT_CTA.primaryHref}>
                 {IMPACT_CTA.primaryLabel}
@@ -174,9 +215,13 @@ export function ImpactSection() {
                 href={SITE_CONFIG.phoneHref}
                 className="group inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-4 text-sm font-semibold text-white transition-all hover:border-orange-500/50 hover:bg-white/[0.08] hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
               >
-                <Phone size={16} className="text-orange-400" />
+                <Phone size={16} aria-hidden="true" className="text-orange-400" />
                 <span>Call or WhatsApp</span>
-                <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden="true"
+                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                />
               </Link>
             </div>
           </div>
