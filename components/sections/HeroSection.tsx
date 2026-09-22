@@ -41,12 +41,12 @@ export function HeroSection() {
           </h1>
 
           {/* Description */}
-          <p className="text-gray-300 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl">
+          <p className="text-gray-300 text-base sm:text-xl leading-relaxed mb-8 sm:mb-10 max-w-xl">
             {subtext}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
             <GlowButton href={primaryCTA.href}>
               {primaryCTA.label}
             </GlowButton>

@@ -23,7 +23,7 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
   };
 
   return (
-    <section className="relative bg-gray-950 py-20 sm:py-24 lg:py-28 overflow-hidden">
+    <section className="relative bg-gray-950 pt-8 pb-12 sm:py-24 lg:py-28 overflow-hidden">
       {/* Top separator */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 

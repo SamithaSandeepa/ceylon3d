@@ -64,15 +64,15 @@ function StatItem({ stat }: { stat: BusinessStat }) {
     <div className="flex flex-col">
       {/* Number — the dominant visual element */}
       <div
-        className="flex items-baseline leading-none mb-3"
+        className="flex items-baseline leading-none mb-2 sm:mb-3"
         aria-label={`${stat.numericValue ?? stat.displayValue}${stat.suffix ?? ""} — ${stat.label}`}
       >
         {stat.prefix && (
-          <span className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
+          <span className="text-[2.25rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
             {stat.prefix}
           </span>
         )}
-        <span className="text-[2.75rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
+        <span className="text-[2.25rem] sm:text-[3.25rem] lg:text-[3.75rem] font-black text-white tracking-tight">
           {typeof stat.numericValue === "number" ? (
             <AnimatedNumber value={stat.numericValue} decimals={stat.decimals ?? 0} />
           ) : (
@@ -82,7 +82,7 @@ function StatItem({ stat }: { stat: BusinessStat }) {
         {stat.suffix && (
           <span
             aria-hidden="true"
-            className="ml-0.5 text-[2rem] sm:text-[2.5rem] lg:text-[2.875rem] font-black text-orange-500 tracking-tight"
+            className="ml-0.5 text-[1.625rem] sm:text-[2.5rem] lg:text-[2.875rem] font-black text-orange-500 tracking-tight"
           >
             {stat.suffix}
           </span>
@@ -90,7 +90,7 @@ function StatItem({ stat }: { stat: BusinessStat }) {
       </div>
 
       {/* Label */}
-      <p className="text-sm font-semibold text-white/80 tracking-wide leading-tight mb-1.5">
+      <p className="text-sm font-semibold text-white/80 tracking-wide leading-tight mb-1">
         {stat.label}
       </p>
 
@@ -108,7 +108,7 @@ export function ImpactSection() {
   return (
     <section
       id="numbers"
-      className="scroll-mt-24 relative bg-gray-950 py-20 sm:py-28 lg:py-32 overflow-hidden"
+      className="scroll-mt-24 relative bg-gray-950 pt-12 pb-8 sm:py-28 lg:py-32 overflow-hidden"
     >
       {/* Top separator */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
@@ -116,7 +116,7 @@ export function ImpactSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* ─── SECTION 1: Editorial Header + Open Stat Row ─── */}
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16 items-center mb-20 sm:mb-24">
+        <div className="grid gap-6 sm:gap-14 lg:grid-cols-12 lg:gap-16 items-start mb-8 sm:mb-24">
 
           {/* Left column: heading */}
           <div className="lg:col-span-5">
@@ -130,7 +130,7 @@ export function ImpactSection() {
             />
           </div>
 
-          {/* Right column: stat row — open, no container card */}
+          {/* Right column: stat row */}
           <motion.div
             className="lg:col-span-7"
             initial={{ opacity: 0, y: 16 }}
@@ -151,7 +151,7 @@ export function ImpactSection() {
                     "flex-1",
                     // Vertical separator on mobile; left-border on sm+
                     i > 0
-                      ? "mt-8 pt-8 border-t border-white/[0.08] sm:mt-0 sm:pt-0 sm:border-t-0 sm:border-l sm:border-white/[0.08] sm:pl-8 lg:pl-12"
+                      ? "mt-6 pt-6 border-t border-white/[0.08] sm:mt-0 sm:pt-0 sm:border-t-0 sm:border-l sm:border-white/[0.08] sm:pl-8 lg:pl-12"
                       : "",
                     // Right padding to centre content in the column gap
                     i < BUSINESS_STATS.length - 1
@@ -169,19 +169,14 @@ export function ImpactSection() {
         </div>
 
         {/* ─── SECTION 2: CTA Strip ─── */}
-        {/*
-         * Separated from the stats by a simple border-t line.
-         * No rounded card, no gradient box, no glow blob.
-         * The CTA feels like the natural editorial continuation of the numbers above.
-         */}
         <motion.div
-          className="border-t border-white/[0.08] pt-10 sm:pt-14"
+          className="border-t border-white/[0.08] pt-8 sm:pt-14"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-16">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-16">
 
             {/* Left: Message */}
             <div className="max-w-xl">
@@ -206,16 +201,20 @@ export function ImpactSection() {
             </div>
 
             {/* Right: Actions */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
-              <GlowButton href={IMPACT_CTA.primaryHref}>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0">
+              {/* Primary — GlowButton with mobile-tighter padding via className override */}
+              <GlowButton
+                href={IMPACT_CTA.primaryHref}
+                className="py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto justify-center"
+              >
                 {IMPACT_CTA.primaryLabel}
               </GlowButton>
 
               <Link
                 href={SITE_CONFIG.phoneHref}
-                className="group inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-4 text-sm font-semibold text-white transition-all hover:border-orange-500/50 hover:bg-white/[0.08] hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                className="group inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] px-6 py-3 sm:py-4 text-sm font-semibold text-white transition-all hover:border-orange-500/50 hover:bg-white/[0.08] hover:text-orange-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
               >
-                <Phone size={16} aria-hidden="true" className="text-orange-400" />
+                <Phone size={16} aria-hidden="true" className="text-orange-400 shrink-0" />
                 <span>Call or WhatsApp</span>
                 <ArrowUpRight
                   size={16}

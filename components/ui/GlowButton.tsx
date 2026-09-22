@@ -28,7 +28,7 @@ export function GlowButton({ href, children, icon, className = "" }: GlowButtonP
   return (
     <a
       href={href}
-      className={`glow-btn group inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-4 rounded-xl text-lg transition-colors ${className}`}
+      className={`glow-btn group inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white font-bold px-7 py-3.5 sm:px-8 sm:py-4 rounded-xl text-base sm:text-lg transition-colors ${className}`}
     >
       {children}
       {trailingIcon}
