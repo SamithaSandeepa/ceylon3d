@@ -112,9 +112,9 @@ export function GalleryLightbox({
         <button
           onClick={onClose}
           aria-label="Close viewer"
-          className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ml-auto pointer-events-auto"
+          className="w-11 h-11 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 ml-auto pointer-events-auto"
         >
-          <X size={24} />
+          <X size={22} />
         </button>
       </div>
 
@@ -150,7 +150,7 @@ export function GalleryLightbox({
                 className="relative min-w-0 shrink-0 grow-0 basis-full h-full flex flex-col items-center justify-center px-4 sm:px-12 lg:px-24"
               >
                 {/* Large Image Container */}
-                <div className="relative w-full max-w-[1300px] h-[55vh] sm:h-[65vh] flex items-center justify-center mx-auto transition-transform duration-500">
+                <div className="relative w-full max-w-[1300px] h-[50dvh] sm:h-[62dvh] flex items-center justify-center mx-auto transition-transform duration-500">
                   <Image
                     src={image.src}
                     alt={image.alt}

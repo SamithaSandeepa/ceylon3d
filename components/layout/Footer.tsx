@@ -109,7 +109,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+        <div className="border-t border-white/[0.08] pt-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
           {/* Copyright */}
           <p className="text-gray-500 text-xs">
             &copy; {currentYear} {SITE_CONFIG.companyName}. All rights reserved.

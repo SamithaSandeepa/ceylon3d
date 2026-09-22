@@ -181,7 +181,7 @@ export function RatingBanner() {
 
           {/* Right Google Rating Badge */}
           <motion.div
-            className="shrink-0 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm"
+            className="shrink-0 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm w-full md:w-auto"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

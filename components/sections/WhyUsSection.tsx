@@ -92,7 +92,7 @@ export function WhyUsSection() {
 
           {/* ── Right Column: Overlapping Editorial Imagery ── */}
           <motion.div
-            className="relative lg:col-span-7"
+            className="relative lg:col-span-7 overflow-hidden lg:overflow-visible"
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -126,7 +126,7 @@ export function WhyUsSection() {
             </div>
 
             {/* Overlapping Precision Detail Inset */}
-            <div className="absolute -bottom-6 -right-2 sm:-bottom-8 sm:-right-4 z-10 w-[170px] sm:w-[210px] lg:w-[230px] overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.12] bg-[#0a0a0f] shadow-2xl shadow-black/80 transition-transform duration-500 hover:-translate-y-1">
+            <div className="absolute -bottom-4 right-2 sm:-bottom-8 sm:-right-4 z-10 w-[150px] sm:w-[210px] lg:w-[230px] overflow-hidden rounded-xl sm:rounded-2xl border border-white/[0.12] bg-[#0a0a0f] shadow-2xl shadow-black/80 transition-transform duration-500 hover:-translate-y-1">
               <div className="relative aspect-square">
                 <Image
                   src="/images/about/detail.jpg"

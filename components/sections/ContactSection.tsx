@@ -203,7 +203,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="e.g. Ruwan Perera"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                     {errors.name && <span className="text-xs text-red-400">{errors.name}</span>}
                   </div>
@@ -220,7 +220,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="07X XXX XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                     {errors.phone && <span className="text-xs text-red-400">{errors.phone}</span>}
                   </div>
@@ -236,7 +236,7 @@ I can send my CAD file/reference images here.`;
                       id="inquiry-service"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50 [&:invalid]:text-gray-500"
+                      className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50 [&:invalid]:text-gray-500"
                       required
                     >
                       <option value="" disabled className="text-gray-900">Select a service</option>
@@ -260,7 +260,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="e.g. 1, 5, 20 units"
                       value={formData.quantity}
                       onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                   </div>
                 </div>
@@ -275,7 +275,7 @@ I can send my CAD file/reference images here.`;
                     placeholder="Describe the part, dimensions, intended use, or share your material preference..."
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="min-h-[130px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                    className="min-h-[130px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                   />
                   {errors.details && <span className="text-xs text-red-400">{errors.details}</span>}
                 </div>

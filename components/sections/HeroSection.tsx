@@ -26,7 +26,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-gray-950/40" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-32 pt-40">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-24 pt-36 sm:pt-40">
         <div className="section-fade max-w-3xl text-left">
           {/* Eyebrow */}
           <div className="mb-6 flex items-center gap-4 text-xs font-semibold tracking-widest text-gray-400 uppercase">
@@ -65,7 +65,7 @@ export function HeroSection() {
           </div>
 
           {/* Capabilities */}
-          <div className="mt-20 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold tracking-widest text-gray-500 uppercase">
+          <div className="mt-14 sm:mt-20 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold tracking-widest text-gray-500 uppercase">
             {capabilities.map((cap, i) => (
               <div key={cap} className="flex items-center gap-4">
                 <span>{cap}</span>
