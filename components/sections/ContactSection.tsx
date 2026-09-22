@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { MapPin, Phone, Clock3, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
-import { BUSINESS_HOURS } from "@/content";
 import { SectionHeader } from "@/components/ui";
 import Link from "next/link";
 
@@ -146,27 +145,7 @@ I can send my CAD file/reference images here.`;
                 </div>
               </div>
 
-              <div className="h-px w-full bg-white/[0.06]" />
 
-              {/* Hours */}
-              <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <Clock3 size={14} className="text-orange-400/80" />
-                  <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                    Opening Hours
-                  </span>
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  {BUSINESS_HOURS.map((h) => (
-                    <div key={h.day} className="flex justify-between text-xs">
-                      <span className="text-gray-400">{h.day}</span>
-                      <span className={h.isClosed ? "text-gray-600" : "font-semibold text-orange-400"}>
-                        {h.hours}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </motion.div>
 
