@@ -1,20 +1,11 @@
-export interface BusinessStat {
-  id: string;
-  numericValue?: number;
-  decimals?: number;
-  prefix?: string;
-  suffix?: string;
-  displayValue?: string;
-  label: string;
-  sublabel?: string;
-}
+import type { BusinessStat } from "@/types/impact";
 
 export const IMPACT_HEADER = {
   eyebrow: "CEYLON 3D IN NUMBERS",
   headingPrefix: "Built around real ",
-  headingHighlight: "ideas and real parts.",
+  headingHighlight: "ideas and real parts",
   description:
-    "From one-off replacement parts to prototypes and custom products, we help turn real requirements into manufacturable solutions.",
+    "From one off replacement parts to prototypes and custom products, we help turn real requirements into manufacturable solutions.",
 };
 
 export const BUSINESS_STATS: BusinessStat[] = [
@@ -40,15 +31,6 @@ export const BUSINESS_STATS: BusinessStat[] = [
     label: "Average Turnaround",
     sublabel: "Fast local fulfillment in Makandura",
   },
-  /*
-   * Configurable slots for future verified metrics (e.g., Projects Completed / Parts Produced):
-   * {
-   *   id: "projects",
-   *   numericValue: 50,
-   *   suffix: "+",
-   *   label: "Projects Completed",
-   * },
-   */
 ];
 
 export const IMPACT_CTA = {
@@ -56,6 +38,6 @@ export const IMPACT_CTA = {
   heading: "Ready to make it real?",
   description:
     "Share your requirement and we'll help determine the right prototyping, scanning or printing approach.",
-  primaryLabel: "Start a Project →",
+  primaryLabel: "Start a Project",
   primaryHref: "/#contact",
 };

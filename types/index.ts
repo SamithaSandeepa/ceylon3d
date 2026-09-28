@@ -16,3 +16,6 @@ export type {
   HeroContent,
   CTAButton,
 } from "./content";
+export type { GoogleReview } from "./reviews";
+export type { BusinessStat } from "./impact";
+

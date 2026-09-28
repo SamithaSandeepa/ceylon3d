@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { MapPin, Phone, Clock3, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
-import { BUSINESS_HOURS } from "@/content";
+import { SectionHeader } from "@/components/ui";
 import Link from "next/link";
+import { DURATION, EASE, REVEAL_Y } from "@/lib/motion";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -64,27 +65,24 @@ I can send my CAD file/reference images here.`;
           {/* ─── LEFT COLUMN: Editorial Intro, Visual & Direct Channels ─── */}
           <motion.div 
             className="lg:col-span-5"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: REVEAL_Y }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out }}
           >
             {/* Header */}
-            <div className="mb-8">
-              <div className="mb-6 flex items-center gap-3">
-                <div className="h-px w-8 bg-orange-500/50" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                  Get In Touch
-                </span>
-              </div>
-              <h2 className="mb-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl">
-                Let&apos;s build your <br className="hidden sm:block" />
-                <span className="text-orange-500">next part</span>.
-              </h2>
-              <p className="text-base leading-7 text-gray-400">
-                Tell us what you need, share your CAD model or reference component, and we&apos;ll help you determine the optimal manufacturing method.
-              </p>
-            </div>
+            <SectionHeader
+              eyebrow="Get In Touch"
+              heading={
+                <>
+                  Let&apos;s build your <br className="hidden sm:block" />
+                  <span className="text-orange-500">next part</span>.
+                </>
+              }
+              description="Tell us what you need, share your CAD model or reference component, and we'll help you determine the optimal manufacturing method."
+              align="left"
+              className="mb-8"
+            />
 
             {/* Integrated Precision Imagery Break */}
             <div className="group relative mb-10 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0f] shadow-xl">
@@ -103,7 +101,7 @@ I can send my CAD file/reference images here.`;
                     <ShieldCheck size={14} />
                     Direct Engineering Support
                   </span>
-                  <span className="font-mono text-[10px] text-white/60">Makandura, LK</span>
+                  <span className="font-mono text-[10px] text-white/60">{SITE_CONFIG.location}, LK</span>
                 </div>
               </div>
             </div>
@@ -148,37 +146,17 @@ I can send my CAD file/reference images here.`;
                 </div>
               </div>
 
-              <div className="h-px w-full bg-white/[0.06]" />
 
-              {/* Hours */}
-              <div>
-                <div className="mb-3 flex items-center gap-2">
-                  <Clock3 size={14} className="text-orange-400/80" />
-                  <span className="text-xs font-semibold uppercase tracking-widest text-white/40">
-                    Opening Hours
-                  </span>
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  {BUSINESS_HOURS.map((h) => (
-                    <div key={h.day} className="flex justify-between text-xs">
-                      <span className="text-gray-400">{h.day}</span>
-                      <span className={h.isClosed ? "text-gray-600" : "font-semibold text-orange-400"}>
-                        {h.hours}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </motion.div>
 
           {/* ─── RIGHT COLUMN: Project Inquiry Form ─── */}
           <motion.div 
             className="lg:col-span-7"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0, y: REVEAL_Y }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.1 }}
           >
             <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-10 lg:p-12 backdrop-blur-sm shadow-2xl shadow-black/40">
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400/90">
@@ -205,7 +183,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="e.g. Ruwan Perera"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                     {errors.name && <span className="text-xs text-red-400">{errors.name}</span>}
                   </div>
@@ -222,7 +200,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="07X XXX XXXX"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                     {errors.phone && <span className="text-xs text-red-400">{errors.phone}</span>}
                   </div>
@@ -238,7 +216,7 @@ I can send my CAD file/reference images here.`;
                       id="inquiry-service"
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50 [&:invalid]:text-gray-500"
+                      className="h-12 w-full appearance-none rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50 [&:invalid]:text-gray-500"
                       required
                     >
                       <option value="" disabled className="text-gray-900">Select a service</option>
@@ -262,7 +240,7 @@ I can send my CAD file/reference images here.`;
                       placeholder="e.g. 1, 5, 20 units"
                       value={formData.quantity}
                       onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                     />
                   </div>
                 </div>
@@ -277,7 +255,7 @@ I can send my CAD file/reference images here.`;
                     placeholder="Describe the part, dimensions, intended use, or share your material preference..."
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="min-h-[130px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
+                    className="min-h-[130px] w-full resize-y rounded-xl border border-white/10 bg-white/[0.03] p-4 text-[16px] sm:text-sm text-white placeholder-gray-500 transition-colors focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/50"
                   />
                   {errors.details && <span className="text-xs text-red-400">{errors.details}</span>}
                 </div>

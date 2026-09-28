@@ -1,15 +1,4 @@
-export type GoogleReview = {
-  id: string;
-  name: string;
-  avatar?: string;
-  rating: number;
-  date: string;
-  text: string;
-  reviewUrl?: string;
-};
-
-export const GOOGLE_REVIEWS_URL =
-  "https://www.google.com/search?q=Ceylon+3D+Makandura";
+import type { GoogleReview } from "@/types/reviews";
 
 export const GOOGLE_REVIEWS: GoogleReview[] = [
   {

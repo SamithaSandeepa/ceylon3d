@@ -1,4 +1,11 @@
 import { SITE_CONFIG } from "@/config/site";
+import { NAV_LINKS } from "./navigation";
+import { SERVICES } from "@/features/services";
+
+export interface FooterLink {
+  label: string;
+  href: string;
+}
 
 export const FOOTER_CONTENT = {
   description: `Professional 3D printing, prototyping and scanning services from ${SITE_CONFIG.location}, Sri Lanka.`,
@@ -6,17 +13,13 @@ export const FOOTER_CONTENT = {
   exploreTitle: "EXPLORE",
   exploreLinks: [
     { label: "Home", href: "/" },
-    { label: "About", href: "/#about" },
-    { label: "In Numbers", href: "/#numbers" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "Contact", href: "/#contact" },
-  ],
+    ...NAV_LINKS.filter((link) => link.label !== "Services"),
+  ] as FooterLink[],
   servicesTitle: "SERVICES",
-  servicesLinks: [
-    { label: "Prototyping", href: "/#services" },
-    { label: "3D Scanning", href: "/#services" },
-    { label: "3D Printing", href: "/#services" },
-  ],
+  servicesLinks: SERVICES.map((s) => ({
+    label: s.title,
+    href: "/#services",
+  })) as FooterLink[],
   contactTitle: "CONTACT",
   contactItems: {
     phone: {

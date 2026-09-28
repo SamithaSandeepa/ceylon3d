@@ -6,7 +6,10 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import useEmblaCarousel from "embla-carousel-react";
 import { SITE_CONFIG } from "@/config/site";
-import { GOOGLE_REVIEWS, GOOGLE_REVIEWS_URL, type GoogleReview } from "@/content/reviews";
+import { GOOGLE_REVIEWS } from "@/content/reviews";
+import type { GoogleReview } from "@/types/reviews";
+import { SectionHeader } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 /* ──────────────────── Google G Icon ──────────────────── */
 
@@ -167,36 +170,23 @@ export function RatingBanner() {
         {/* ─── Header & Google Rating Summary ─── */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 sm:mb-16">
           {/* Left Heading */}
-          <motion.div
+          <SectionHeader
+            eyebrow="CUSTOMER REVIEWS"
+            headingPrefix="What our"
+            headingHighlight="customers say"
+            headingSuffix="."
+            description="Feedback from customers who trusted Ceylon 3D with their parts, prototypes and custom printing requirements."
+            align="left"
             className="max-w-2xl"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-px w-8 bg-orange-500/50" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90">
-                CUSTOMER REVIEWS
-              </span>
-            </div>
-
-            <h2 className="mb-4 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl">
-              What our <span className="text-orange-500">customers say</span>.
-            </h2>
-
-            <p className="text-base leading-7 text-gray-400">
-              Feedback from customers who trusted Ceylon 3D with their parts, prototypes and custom printing requirements.
-            </p>
-          </motion.div>
+          />
 
           {/* Right Google Rating Badge */}
           <motion.div
-            className="shrink-0 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm"
+            className="shrink-0 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 sm:p-6 backdrop-blur-sm w-full md:w-auto"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.1 }}
           >
             <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08]">
               <GoogleGIcon className="w-5 h-5" />
@@ -222,7 +212,7 @@ export function RatingBanner() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{ duration: DURATION.normal, ease: EASE.out, delay: index * 0.08 }}
               >
                 <ReviewCard review={review} />
               </motion.div>
@@ -234,7 +224,7 @@ export function RatingBanner() {
         <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-white/[0.04]">
           {/* View on Google Link */}
           <a
-            href={GOOGLE_REVIEWS_URL}
+            href={SITE_CONFIG.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-orange-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500/50 rounded-sm py-1"

@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Phone, MapPin, Clock3, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { FOOTER_CONTENT } from "@/content/footer";
 import { SITE_CONFIG } from "@/config/site";
+import { BrandLogo } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,24 +17,30 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-16">
+        {/*
+         * Single reveal for the entire footer column grid.
+         * Footer is a landmark — it should feel stable, not animated per-link.
+         * One soft fade-up is enough to signal entry.
+         */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: DURATION.medium, ease: EASE.out }}
+        >
           {/* Brand Column (Wider: 4 cols) */}
           <div className="lg:col-span-4">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-4 group">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white transition-transform duration-300 group-hover:scale-105">
-                {SITE_CONFIG.companyNameHighlight}
-              </div>
-              <span className="font-bold text-xl text-white tracking-tight">
-                {SITE_CONFIG.companyNameShort}
-                <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
-              </span>
+            {/* Official logo — links to homepage */}
+            <Link href="/" aria-label="Ceylon 3D — go to homepage" className="inline-block mb-5">
+              <BrandLogo size="footer" />
             </Link>
 
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-3">
+            <p className="text-gray-400 text-[15px] leading-relaxed max-w-sm mb-3">
               {FOOTER_CONTENT.description}
             </p>
 
-            <p className="text-gray-500 text-xs font-medium">
+            <p className="text-gray-500 text-sm font-medium">
               {FOOTER_CONTENT.subline}
             </p>
           </div>
@@ -44,7 +55,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-200 inline-block"
+                    className="text-gray-400 hover:text-orange-400 text-[15px] transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -63,7 +74,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors duration-200 inline-block"
+                    className="text-gray-400 hover:text-orange-400 text-[15px] transition-colors duration-200 inline-block"
                   >
                     {link.label}
                   </Link>
@@ -77,7 +88,7 @@ export function Footer() {
             <h4 className="text-white text-xs font-semibold uppercase tracking-[0.2em] mb-4 text-white/90">
               {FOOTER_CONTENT.contactTitle}
             </h4>
-            <div className="space-y-3.5 text-sm text-gray-400">
+            <div className="space-y-3.5 text-[15px] text-gray-400">
               {/* Phone */}
               <div className="flex items-start gap-2.5">
                 <Phone size={15} className="text-orange-400 shrink-0 mt-0.5" />
@@ -94,7 +105,7 @@ export function Footer() {
                 <MapPin size={15} className="text-orange-400 shrink-0 mt-0.5" />
                 <div>
                   <p>{FOOTER_CONTENT.contactItems.address.line1}</p>
-                  <p className="text-gray-500 text-xs mt-0.5">
+                  <p className="text-gray-500 text-[13px] mt-0.5">
                     {FOOTER_CONTENT.contactItems.address.line2}
                   </p>
                 </div>
@@ -107,14 +118,52 @@ export function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/[0.08] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Bottom Bar — static, no animation. Stable legal links. */}
+        <div className="border-t border-white/[0.08] pt-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+          {/* Copyright */}
           <p className="text-gray-500 text-xs">
             &copy; {currentYear} {SITE_CONFIG.companyName}. All rights reserved.
           </p>
 
+          {/* Legal links */}
+          <div className="flex items-center gap-4 text-xs text-gray-600">
+            <Link
+              href="/privacy-policy"
+              className="hover:text-gray-400 transition-colors duration-200"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">&middot;</span>
+            <Link
+              href="/terms-and-conditions"
+              className="hover:text-gray-400 transition-colors duration-200"
+            >
+              Terms &amp; Conditions
+            </Link>
+          </div>
+
+          {/* Developer credit */}
+          <p className="text-gray-600 text-xs">
+            Developed by{" "}
+            <a
+              href="https://www.hitinnovations.lk/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="HIT Innovations — website opens in a new tab"
+              className="group inline-flex items-center gap-1 text-gray-500 hover:text-orange-400 transition-colors duration-200"
+            >
+              HIT Innovations
+              <ArrowUpRight
+                size={12}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+          </p>
+
+          {/* Google rating */}
           <a
             href={FOOTER_CONTENT.ratingUrl}
             target="_blank"
@@ -126,7 +175,7 @@ export function Footer() {
               ★★★★★
             </span>
             <span>{FOOTER_CONTENT.ratingText}</span>
-            <ArrowUpRight size={13} className="text-gray-500 group-hover:text-orange-400 transition-colors" />
+            <ArrowUpRight size={13} aria-hidden="true" className="text-gray-500 group-hover:text-orange-400 transition-colors" />
           </a>
         </div>
       </div>

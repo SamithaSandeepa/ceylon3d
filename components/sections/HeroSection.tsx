@@ -1,51 +1,88 @@
+"use client";
+
+import { ArrowUpRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { HERO_CONTENT } from "@/content";
 import { GlowButton } from "@/components/ui";
+import { heroVariants, DURATION, EASE } from "@/lib/motion";
 
 export function HeroSection() {
-  const { eyebrow, headline, subtext, primaryCTA, secondaryCTA, capabilities } = HERO_CONTENT;
+  const { eyebrow, headline, subtext, primaryCTA, secondaryCTA, capabilities } =
+    HERO_CONTENT;
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section className="relative min-h-screen flex items-center justify-start overflow-hidden bg-gray-950">
-      {/* Background video */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover object-[70%_center] lg:object-right"
-        src="/videos/hero.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/images/about/workshop.jpeg"
-      />
+      {/* Background video — subtle entrance */}
+      <motion.div
+        className="absolute inset-0 w-full h-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: DURATION.slow * 1.4, ease: EASE.inOut }}
+      >
+        <video
+          className="absolute inset-0 w-full h-full object-cover object-[70%_center] lg:object-right"
+          src="/videos/herovedio.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/images/about/workshop.jpeg"
+        />
+      </motion.div>
 
       {/* Video Overlays */}
-      {/* Mobile: darker everywhere, Desktop: gradient left to right */}
       <div className="absolute inset-0 bg-gray-950/80 sm:bg-transparent sm:bg-gradient-to-r sm:from-gray-950/95 sm:via-gray-950/70 sm:to-transparent" />
-      {/* Subtle vertical gradient for text readability near top/bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-gray-950/40" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-32 pt-40">
-        <div className="section-fade max-w-3xl text-left">
-          {/* Eyebrow */}
-          <div className="mb-6 flex items-center gap-4 text-xs font-semibold tracking-widest text-gray-400 uppercase">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-24 pt-36 sm:pt-40">
+        <div className="max-w-3xl text-left">
+
+          {/* Eyebrow — first to appear */}
+          <motion.div
+            className="mb-6 flex items-center gap-4 text-xs font-semibold tracking-widest text-gray-400 uppercase"
+            custom={0}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <div className="w-8 h-[2px] bg-orange-500" />
             {eyebrow}
-          </div>
+          </motion.div>
 
           {/* Headline */}
-          <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black text-white leading-[1.05] sm:leading-[1.05] mb-6">
+          <motion.h1
+            className="text-4xl sm:text-6xl xl:text-7xl font-black text-white leading-[1.05] sm:leading-[1.05] mb-6"
+            custom={1}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {headline.prefix}
-            <span className="text-orange-500">{headline.highlight}</span>
-          </h1>
+            <span className="text-orange-500">{headline.highlight}</span>.
+          </motion.h1>
 
           {/* Description */}
-          <p className="text-gray-300 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl">
+          <motion.p
+            className="text-gray-300 text-base sm:text-xl leading-relaxed mb-8 sm:mb-10 max-w-xl"
+            custom={2}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {subtext}
-          </p>
+          </motion.p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+          <motion.div
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
+            custom={3}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+          >
             <GlowButton href={primaryCTA.href}>
               {primaryCTA.label}
             </GlowButton>
@@ -54,11 +91,23 @@ export function HeroSection() {
               className="text-white hover:text-orange-400 font-semibold text-lg transition-colors flex items-center gap-2 group"
             >
               {secondaryCTA.label}
+              <ArrowUpRight
+                size={16}
+                strokeWidth={2}
+                aria-hidden="true"
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
             </a>
-          </div>
+          </motion.div>
 
           {/* Capabilities */}
-          <div className="mt-20 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold tracking-widest text-gray-500 uppercase">
+          <motion.div
+            className="mt-14 sm:mt-20 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-semibold tracking-widest text-gray-500 uppercase"
+            custom={shouldReduceMotion ? 0 : 4}
+            variants={heroVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {capabilities.map((cap, i) => (
               <div key={cap} className="flex items-center gap-4">
                 <span>{cap}</span>
@@ -67,10 +116,10 @@ export function HeroSection() {
                 )}
               </div>
             ))}
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
   );
 }
-

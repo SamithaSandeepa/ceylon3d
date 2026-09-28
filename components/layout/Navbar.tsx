@@ -1,60 +1,73 @@
 "use client";
 
 import { useState } from "react";
+import { Phone } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useScrolled } from "@/hooks/useScrolled";
 import { NAV_LINKS } from "@/content";
 import { SITE_CONFIG } from "@/config/site";
 import { MobileMenu } from "./MobileMenu";
+import { BrandLogo } from "@/components/ui";
 import Link from "next/link";
+import { navbarEntrance } from "@/lib/motion";
 
 export function Navbar() {
   const scrolled = useScrolled();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav
+    <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-gray-950/95 backdrop-blur-md border-b border-orange-500/20 shadow-lg"
           : "bg-transparent"
       }`}
+      {...navbarEntrance}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-sm font-black text-white group-hover:scale-110 transition-transform">
-            {SITE_CONFIG.companyNameHighlight}
-          </div>
-          <span className="font-bold text-xl text-white">
-            {SITE_CONFIG.companyNameShort}
-            <span className="text-orange-400">{SITE_CONFIG.companyNameHighlight}</span>
-          </span>
+      {/*
+       * Bar heights:
+       *   Mobile  h-20 (80px) — logo is 62px, leaving 9px top/bottom
+       *   Desktop h-24 (96px) — logo is 76px, leaving 10px top/bottom
+       */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-20 md:h-24">
+
+        {/* Brand logo */}
+        <Link
+          href="/"
+          aria-label="Ceylon 3D — go to homepage"
+          className="shrink-0"
+        >
+          <BrandLogo size="navbar" />
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop navigation */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-gray-300 hover:text-orange-400 text-sm font-medium transition-colors"
+              className="text-gray-300 hover:text-orange-400 text-[15px] font-medium transition-colors whitespace-nowrap"
             >
               {l.label}
             </Link>
           ))}
         </div>
 
+        {/* Phone CTA */}
         <a
           href={SITE_CONFIG.phoneHref}
-          className="hidden md:inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors"
+          className="hidden md:inline-flex items-center justify-center gap-2 shrink-0 bg-orange-500 hover:bg-orange-400 text-white text-[15px] font-semibold px-4 py-2.5 rounded-lg transition-colors"
         >
-          <span>📞</span> {SITE_CONFIG.phone}
+          <Phone size={16} strokeWidth={1.8} className="shrink-0" aria-hidden="true" />
+          <span>{SITE_CONFIG.phone}</span>
         </a>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-gray-300 hover:text-orange-400"
+          className="md:hidden text-gray-300 hover:text-orange-400 p-1 shrink-0"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
@@ -66,15 +79,17 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <MobileMenu
-          links={NAV_LINKS}
-          phoneLabel={SITE_CONFIG.phone}
-          phoneHref={SITE_CONFIG.phoneHref}
-          onClose={() => setMenuOpen(false)}
-        />
-      )}
-    </nav>
+      {/* Mobile slide-down menu — animated */}
+      <AnimatePresence>
+        {menuOpen && (
+          <MobileMenu
+            links={NAV_LINKS}
+            phoneLabel={SITE_CONFIG.phone}
+            phoneHref={SITE_CONFIG.phoneHref}
+            onClose={() => setMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </motion.nav>
   );
 }

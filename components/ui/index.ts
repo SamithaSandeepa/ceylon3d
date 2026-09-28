@@ -1,9 +1,4 @@
 export { SectionHeader } from "./SectionHeader";
-export { ServiceCard } from "./ServiceCard";
-export { FeatureCard } from "./FeatureCard";
-export { ProcessStep } from "./ProcessStep";
-export { ContactCard } from "./ContactCard";
 export { GlowButton } from "./GlowButton";
-export { OutlineButton } from "./OutlineButton";
-export { StatItem } from "./StatItem";
-export { Badge } from "./Badge";
+export { BrandLogo } from "./BrandLogo";
+export { Reveal } from "./Reveal";
