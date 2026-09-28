@@ -8,6 +8,7 @@ import { SITE_CONFIG } from "@/config/site";
 import { IMPACT_HEADER, BUSINESS_STATS, IMPACT_CTA } from "@/content/impact";
 import type { BusinessStat } from "@/types/impact";
 import { GlowButton, SectionHeader } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 /* ──────────────── Helper: Animated Count-up ─────────────── */
 
@@ -136,7 +137,7 @@ export function ImpactSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.1 }}
           >
             {/*
              * Mobile: vertical stack with horizontal rule between each stat.
@@ -174,7 +175,7 @@ export function ImpactSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.15 }}
         >
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-16">
 

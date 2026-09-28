@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Phone, MapPin, Clock3, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 import { FOOTER_CONTENT } from "@/content/footer";
 import { SITE_CONFIG } from "@/config/site";
 import { BrandLogo } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,7 +17,18 @@ export function Footer() {
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-16">
+        {/*
+         * Single reveal for the entire footer column grid.
+         * Footer is a landmark — it should feel stable, not animated per-link.
+         * One soft fade-up is enough to signal entry.
+         */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: DURATION.medium, ease: EASE.out }}
+        >
           {/* Brand Column (Wider: 4 cols) */}
           <div className="lg:col-span-4">
             {/* Official logo — links to homepage */}
@@ -21,12 +36,10 @@ export function Footer() {
               <BrandLogo size="footer" />
             </Link>
 
-            {/* Description: bumped to text-[15px] for readability */}
             <p className="text-gray-400 text-[15px] leading-relaxed max-w-sm mb-3">
               {FOOTER_CONTENT.description}
             </p>
 
-            {/* Subline: was text-xs, now text-sm */}
             <p className="text-gray-500 text-sm font-medium">
               {FOOTER_CONTENT.subline}
             </p>
@@ -92,7 +105,6 @@ export function Footer() {
                 <MapPin size={15} className="text-orange-400 shrink-0 mt-0.5" />
                 <div>
                   <p>{FOOTER_CONTENT.contactItems.address.line1}</p>
-                  {/* Address line2 stays slightly smaller for visual hierarchy */}
                   <p className="text-gray-500 text-[13px] mt-0.5">
                     {FOOTER_CONTENT.contactItems.address.line2}
                   </p>
@@ -106,9 +118,9 @@ export function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar — static, no animation. Stable legal links. */}
         <div className="border-t border-white/[0.08] pt-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
           {/* Copyright */}
           <p className="text-gray-500 text-xs">

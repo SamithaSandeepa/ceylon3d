@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { SectionHeader } from "@/components/ui";
 import Link from "next/link";
+import { DURATION, EASE, REVEAL_Y } from "@/lib/motion";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -64,10 +65,10 @@ I can send my CAD file/reference images here.`;
           {/* ─── LEFT COLUMN: Editorial Intro, Visual & Direct Channels ─── */}
           <motion.div 
             className="lg:col-span-5"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: REVEAL_Y }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out }}
           >
             {/* Header */}
             <SectionHeader
@@ -152,10 +153,10 @@ I can send my CAD file/reference images here.`;
           {/* ─── RIGHT COLUMN: Project Inquiry Form ─── */}
           <motion.div 
             className="lg:col-span-7"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            initial={{ opacity: 0, y: REVEAL_Y }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.1 }}
           >
             <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-10 lg:p-12 backdrop-blur-sm shadow-2xl shadow-black/40">
               <div className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-orange-400/90">

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { SITE_CONFIG } from "@/config/site";
 import { motion, AnimatePresence } from "framer-motion";
+import { EASE } from "@/lib/motion";
 
 export function FloatingWhatsApp() {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +29,7 @@ export function FloatingWhatsApp() {
           initial={{ opacity: 0, scale: 0.9, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 10 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: EASE.out }}
         >
           {/* Hover label — slides out to the left on desktop */}
           <span

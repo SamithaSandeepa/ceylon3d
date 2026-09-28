@@ -1,8 +1,10 @@
 "use client";
 
 import { Phone } from "lucide-react";
+import { motion } from "framer-motion";
 import type { NavLink } from "@/types";
 import Link from "next/link";
+import { mobileMenuVariants } from "@/lib/motion";
 
 interface MobileMenuProps {
   links: NavLink[];
@@ -13,7 +15,13 @@ interface MobileMenuProps {
 
 export function MobileMenu({ links, phoneLabel, phoneHref, onClose }: MobileMenuProps) {
   return (
-    <div className="md:hidden bg-gray-950/98 border-t border-orange-500/20 px-4 pt-1 pb-5">
+    <motion.div
+      className="md:hidden bg-gray-950/98 border-t border-orange-500/20 px-4 pt-1 pb-5 overflow-hidden"
+      variants={mobileMenuVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
       {links.map((l) => (
         <Link
           key={l.href}
@@ -31,6 +39,6 @@ export function MobileMenu({ links, phoneLabel, phoneHref, onClose }: MobileMenu
         <Phone size={15} strokeWidth={2} aria-hidden="true" />
         <span>{phoneLabel}</span>
       </a>
-    </div>
+    </motion.div>
   );
 }

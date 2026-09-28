@@ -8,6 +8,7 @@ import { CategoryCard } from "./CategoryCard";
 import { GalleryLightbox } from "./GalleryLightbox";
 import { GalleryCategory } from "@/types/gallery";
 import { SectionHeader } from "@/components/ui";
+import { DURATION, EASE, STAGGER } from "@/lib/motion";
 
 interface GalleryPreviewProps {
   categories: GalleryCategory[];
@@ -56,7 +57,7 @@ export function GalleryPreview({ categories }: GalleryPreviewProps) {
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: DURATION.normal, ease: EASE.out, delay: index * STAGGER.normal }}
               >
                 <CategoryCard
                   category={category}

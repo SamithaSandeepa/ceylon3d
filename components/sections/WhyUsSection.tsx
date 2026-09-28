@@ -6,6 +6,7 @@ import { MapPin, ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG } from "@/config/site";
 import { SectionHeader } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 export function WhyUsSection() {
   return (
@@ -39,7 +40,7 @@ export function WhyUsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.15 }}
+              transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.15 }}
             >
               <p className="text-base leading-7 text-gray-400">
                 Ceylon 3D provides professional 3D printing, prototyping and
@@ -61,7 +62,7 @@ export function WhyUsSection() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.22 }}
+              transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.22 }}
             >
               <div className="flex items-start gap-3">
                 <MapPin
@@ -96,7 +97,7 @@ export function WhyUsSection() {
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: DURATION.slow, ease: EASE.out, delay: 0.1 }}
           >
             {/* Dominant Workshop Image Container */}
             <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0f] lg:rounded-3xl shadow-2xl shadow-black/60">

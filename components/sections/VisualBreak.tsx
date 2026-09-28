@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionHeader } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 export function VisualBreak() {
   return (
@@ -15,7 +16,7 @@ export function VisualBreak() {
         initial={{ opacity: 0, scale: 1.03 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: DURATION.slow * 1.2, ease: EASE.out }}
       >
         <Image
           src="/images/services/3d-printing.jpg"
@@ -60,7 +61,7 @@ export function VisualBreak() {
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.2 }}
           >
             <Link
               href="/gallery"

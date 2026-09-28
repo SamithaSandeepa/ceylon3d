@@ -9,6 +9,7 @@ import { SITE_CONFIG } from "@/config/site";
 import { GOOGLE_REVIEWS } from "@/content/reviews";
 import type { GoogleReview } from "@/types/reviews";
 import { SectionHeader } from "@/components/ui";
+import { DURATION, EASE } from "@/lib/motion";
 
 /* ──────────────────── Google G Icon ──────────────────── */
 
@@ -185,7 +186,7 @@ export function RatingBanner() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.1 }}
           >
             <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-white/[0.04] border border-white/[0.08]">
               <GoogleGIcon className="w-5 h-5" />
@@ -211,7 +212,7 @@ export function RatingBanner() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
+                transition={{ duration: DURATION.normal, ease: EASE.out, delay: index * 0.08 }}
               >
                 <ReviewCard review={review} />
               </motion.div>

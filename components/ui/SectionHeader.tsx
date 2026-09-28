@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import type { SectionHeaderData } from "@/types";
+import { DURATION, EASE } from "@/lib/motion";
 
 export interface SectionHeaderProps {
   /** Uppercase eyebrow/subtitle text (e.g. "WHAT WE DO") */
@@ -54,8 +55,8 @@ export function SectionHeader({
           className="mb-3 inline-block text-[11px] font-semibold uppercase tracking-[0.25em] text-orange-400/90"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: DURATION.normal, ease: EASE.out }}
         >
           {effectiveEyebrow}
         </motion.span>
@@ -65,8 +66,8 @@ export function SectionHeader({
         className="mb-3 text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-[3.25rem]"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.08 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.08 }}
       >
         {heading ? (
           heading
@@ -89,8 +90,8 @@ export function SectionHeader({
           } text-base leading-relaxed text-gray-400 sm:text-lg`}
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: DURATION.normal, ease: EASE.out, delay: 0.15 }}
         >
           {effectiveDescription}
         </motion.p>
